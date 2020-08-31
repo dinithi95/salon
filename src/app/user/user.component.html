@@ -1,0 +1,62 @@
+<nz-card nzTitle="USER">
+
+<form nz-form [formGroup]="userForm" >
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
+      <input nz-input formControlName="code" id="code" input nz-input placeholder="Type your code here" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="name" >Name</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+      <input nz-input formControlName="name" id="name"  nz-input placeholder="Type your name here"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="email" >E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+      <input nz-input formControlName="email" id="email" nz-input placeholder="Type your email here"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid NIC!">
+      <input nz-input formControlName="nic" id="nic" nz-input placeholder="Type your NIC here"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="gender">Gender</nz-form-label>
+    <div nz-col [nzSm]="14" [nzXs]="24">
+    <nz-select nzErrorTip="The input is not valid Gender!" nzShowSearch nzAllowClear nzPlaceHolder="Select Gender" formControlName="gender" id="gender">
+      <nz-option nzLabel="Male" nzValue="Male"></nz-option>
+      <nz-option nzLabel="Female" nzValue="Female"></nz-option>
+      <nz-option nzLabel="Other" nzValue="Other"></nz-option>
+    </nz-select>
+    </div>
+  </nz-form-item>
+  <div nz-row>
+    <div nz-col [nzOffset]="12" [nzSpan]="2" >
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button (click)="resetForm($event)">Reset</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="2" >
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button
+                  nzType="primary"
+                  [disabled]="!userForm.valid"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure?"
+                  (nzOnConfirm)="submitForm()"
+                  nzPopconfirmPlacement="top">Submit
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+</nz-card>

@@ -1,0 +1,125 @@
+<nz-card nzTitle="CUSTOMER MANAGEMENT">
+
+  <p style="font-size:15px;color:rgba(0, 0, 0, 0.85);margin-bottom:16px;font-weight: 500;">
+    Customer Registration Form
+  </p>
+
+  <nz-card nzType="inner" nzTitle="Basic Details">
+
+  <form nz-form [formGroup]="customer1Form" >
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Customer Code</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
+        <input nz-input formControlName="code" id="code" input nz-input placeholder="Type your code here" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name" >Full Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="name" id="name"  nz-input placeholder="Type your name here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="birth" >Date of Birth</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
+        <input nz-input formControlName="birth" id="birth"  nz-input placeholder="Date of birth here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid NIC!">
+        <input nz-input formControlName="nic" id="nic" nz-input placeholder="Type your NIC here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="civil" >Civil Status</nz-form-label>
+      <nz-radio-group [(ngModel)]="radioValue" nzName="radiogroup" nzErrorTip="The input is not valid Civil Status!">
+        <label nz-radio nzValue="Married">Married</label>
+        <label nz-radio nzValue="Unmarried">Unmarried</label>
+      </nz-radio-group>
+    </nz-form-item>
+  </form>
+
+  </nz-card>
+
+<br><br>
+
+  <nz-card nzType="inner" nzTitle="Other Details">
+
+    <form nz-form [formGroup]="customer2Form" >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address">Permanent Address</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Address!">
+          <input nz-input formControlName="address" id="address" input nz-input placeholder="Type your  permanent address here" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal" >Postal Code</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Post Code!">
+          <input nz-input formControlName="postal" id="postal"  nz-input placeholder="Type your name here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="town" >Town</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Town!">
+          <input nz-input formControlName="town" id="town"  nz-input placeholder="Type your town here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="district">District</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid District!">
+          <input nz-input formControlName="district" id="district" nz-input placeholder="Type your NIC here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+  </nz-card>
+
+  <br><br>
+
+  <nz-card nzType="inner" nzTitle="Contact Details">
+
+    <form nz-form [formGroup]="customer3Form" >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="land">Land Number</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
+          <input nz-input formControlName="land" id="land" input nz-input placeholder="Type your  land number here" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mobile" >Mobile Number</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
+          <input nz-input formControlName="mobile" id="mobile"  nz-input placeholder="Type your mobile number here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" >Email Address</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+          <input nz-input formControlName="email" id="email"  nz-input placeholder="Type your email address here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+  </nz-card>
+
+  <br>
+  <br>
+
+
+
+
+
+</nz-card>
+
+

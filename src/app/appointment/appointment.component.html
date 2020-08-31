@@ -1,0 +1,108 @@
+<nz-card nzTitle="APPOINTMENT MANAGEMENT">
+
+  <p style="font-size:15px;color:rgba(0, 0, 0, 0.85);margin-bottom:16px;font-weight: 500;">
+   Appointment Creation Form
+  </p>
+
+  <nz-card nzType="inner" nzTitle="Basic Details">
+
+    <form nz-form [formGroup]="appointment1Form" >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">Appointment ID</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Appointment ID!">
+          <input nz-input formControlName="id" id="id" input nz-input placeholder="Type your code here" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="date" >Date</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
+          <input nz-input formControlName="date" id="date"  nz-input placeholder="Date here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="start">Start Time</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Time!">
+          <input nz-input formControlName="start" id="start" nz-input placeholder="Start Time here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="end">End Time</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Time!">
+          <input nz-input formControlName="end" id="end" nz-input placeholder="End Time here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cost">Cost</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Cost!">
+          <input nz-input formControlName="cost" id="cost" nz-input placeholder="Total Cost"/>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+  </nz-card>
+  <br><br>
+
+  <nz-card nzType="inner" nzTitle="Customer Details">
+
+    <form nz-form [formGroup]="appointment3Form" >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
+          <input nz-input formControlName="nic" id="nic" input nz-input placeholder="Type your NIC number here" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+          <input nz-input formControlName="name" id="name" input nz-input placeholder="Type your name here" />
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mobile" >Mobile Number</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
+          <input nz-input formControlName="mobile" id="mobile"  nz-input placeholder="Type your mobile number here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" >Email Address</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+          <input nz-input formControlName="email" id="email"  nz-input placeholder="Type your email address here"/>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+
+  </nz-card>
+
+  <br><br>
+
+  <nz-card nzType="inner" nzTitle="Service Details">
+
+    <nz-tree
+      #nzTreeComponent
+      [nzData]="nodes"
+      nzCheckable
+      [nzCheckedKeys]="defaultCheckedKeys"
+      [nzExpandedKeys]="defaultExpandedKeys"
+      [nzSelectedKeys]="defaultSelectedKeys"
+      (nzClick)="nzClick($event)"
+      (nzContextMenu)="nzClick($event)"
+      (nzCheckBoxChange)="nzCheck($event)"
+      (nzExpandChange)="nzCheck($event)"
+    >
+    </nz-tree>
+
+  </nz-card>
+</nz-card>
+
+
+
