@@ -90,12 +90,11 @@ export class AppointmentComponent implements OnInit {
   }
 
   // nzSelectedKeys change
-  nzSelect(keys: string[]): void {
-    console.log(keys, this.nzTreeComponent.getSelectedNodeList());
-  }
+  // nzSelect(keys: string[]): void {
+  //   console.log(keys, this.nzTreeComponent.getSelectedNodeList());
+  // }
 
   ngAfterViewInit(): void {
-    // get node by key: '10011'
     console.log(this.nzTreeComponent.getTreeNodeByKey('10011'));
     // use tree methods
     console.log(
