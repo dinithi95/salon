@@ -52,7 +52,7 @@
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="civil" >Civil Status</nz-form-label>
-      <nz-radio-group [(ngModel)]="radioValue" nzName="radiogroup">
+      <nz-radio-group formControlName="civilStatus" nzName="radiogroup">
         <label nz-radio nzValue="Married">Married</label>
         <label nz-radio nzValue="Unmarried">Unmarried</label>
       </nz-radio-group>
