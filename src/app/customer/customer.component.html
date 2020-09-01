@@ -4,8 +4,15 @@
     Customer Registration Form
   </p>
 
+
+
+
+
+
+
   <form nz-form [formGroup]="customerForm">
-    <nz-card nzType="inner" nzTitle="Basic Details">
+    <div nz-row>
+      <div nz-col [nzMd]="12">
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Customer Code</nz-form-label>
@@ -44,11 +51,6 @@
       </nz-form-item>
 
 
-    </nz-card>
-
-    <br><br>
-
-    <nz-card nzType="inner" nzTitle="Other Details">
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address">Permanent Address</nz-form-label>
@@ -57,6 +59,9 @@
                  placeholder="Type your  permanent address here"/>
         </nz-form-control>
       </nz-form-item>
+
+    </div>
+    <div nz-col [nzMd]="12">
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">Postal Code</nz-form-label>
@@ -80,11 +85,6 @@
       </nz-form-item>
 
 
-    </nz-card>
-
-    <br><br>
-
-    <nz-card nzType="inner" nzTitle="Contact Details">
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="land">Land Number</nz-form-label>
@@ -108,9 +108,10 @@
       </nz-form-item>
 
 
-    </nz-card>
-  </form>
 
+    </div>
+  </div>
+  </form>
   <br>
   <br>
 
