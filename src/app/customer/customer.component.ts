@@ -7,9 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  customer1Form: FormGroup;
-  customer2Form: FormGroup;
-  customer3Form: FormGroup;
+  customerForm: FormGroup;
   radioValue = 'Married';
 
   constructor(private fb: FormBuilder) {
@@ -20,37 +18,32 @@ export class CustomerComponent implements OnInit {
   }
 
   formControl() {
-    this.customer1Form = this.fb.group({
+    this.customerForm = this.fb.group({
       id: null,
       code: ['', [Validators.required]],
       name: ['', [Validators.required]],
       birth: ['', [Validators.required]],
       nic: ['', [Validators.required]],
-      civil: ['', [Validators.required]]
-    });
-
-    this.customer2Form = this.fb.group({
       address: ['', [Validators.required]],
       postal: ['', [Validators.required]],
       town: ['', [Validators.required]],
       district: ['', [Validators.required]],
-    });
-
-    this.customer3Form = this.fb.group({
       land: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      civilStatus: ['', [Validators.required]],
     });
 
   }
-}
+
 
   //submitForm() {
 // need to create laravel backend before write this code(insert part)
   // }
 
   //resetForm(e: MouseEvent): void {
-    //this.customerForm.reset();
+  //this.customerForm.reset();
   //}
 
 //}
+}

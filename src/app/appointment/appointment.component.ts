@@ -8,9 +8,7 @@ import {NzFormatEmitEvent, NzTreeComponent, NzTreeNodeOptions} from 'ng-zorro-an
   styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent implements OnInit {
-  appointment1Form: FormGroup;
-  appointment2Form: FormGroup;
-  appointment3Form: FormGroup;
+  appointmentForm: FormGroup;
   radioValue = 'Married';
   @ViewChild('nzTreeComponent', {static: false}) nzTreeComponent!: NzTreeComponent;
   defaultCheckedKeys = ['10020'];
@@ -53,7 +51,7 @@ export class AppointmentComponent implements OnInit {
 
 
   formControl() {
-    this.appointment1Form = this.fb.group({
+    this.appointmentForm = this.fb.group({
       id: null,
       code: ['', [Validators.required]],
       name: ['', [Validators.required]],
@@ -61,19 +59,12 @@ export class AppointmentComponent implements OnInit {
       date: ['', [Validators.required]],
       start: ['', [Validators.required]],
       end: ['', [Validators.required]],
-      cost: ['', [Validators.required]]
-    });
-
-    this.appointment2Form = this.fb.group({
+      cost: ['', [Validators.required]],
       address: ['', [Validators.required]],
       postal: ['', [Validators.required]],
       town: ['', [Validators.required]],
       district: ['', [Validators.required]],
-    });
-
-    this.appointment3Form = this.fb.group({
       nic: ['', [Validators.required]],
-      name: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
       email: ['', [Validators.required]],
     });

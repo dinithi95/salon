@@ -4,9 +4,9 @@
    Appointment Creation Form
   </p>
 
+  <form nz-form [formGroup]="appointmentForm" >
   <nz-card nzType="inner" nzTitle="Basic Details">
 
-    <form nz-form [formGroup]="appointment1Form" >
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">Appointment ID</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Appointment ID!">
@@ -42,14 +42,13 @@
         </nz-form-control>
       </nz-form-item>
 
-    </form>
+
 
   </nz-card>
   <br><br>
 
   <nz-card nzType="inner" nzTitle="Customer Details">
 
-    <form nz-form [formGroup]="appointment3Form" >
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
@@ -79,7 +78,6 @@
         </nz-form-control>
       </nz-form-item>
 
-    </form>
 
   </nz-card>
 
@@ -102,6 +100,7 @@
     </nz-tree>
 
   </nz-card>
+  </form>
 </nz-card>
 
 
