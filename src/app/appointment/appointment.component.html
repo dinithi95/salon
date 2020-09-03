@@ -1,23 +1,31 @@
 <nz-card nzTitle="APPOINTMENT MANAGEMENT">
 
   <p style="font-size:15px;color:rgba(0, 0, 0, 0.85);margin-bottom:16px;font-weight: 500;">
-   Appointment Creation Form
+    Appointment Creation Form
   </p>
 
-  <form nz-form [formGroup]="appointmentForm" >
-  <nz-card nzType="inner" nzTitle="Basic Details">
+
+  <form nz-form [formGroup]="appointmentForm">
+
+
+      <nz-steps [nzCurrent]="current">
+        <nz-step nzTitle="Basic Details"></nz-step>
+        <nz-step nzTitle="Customer Details"></nz-step>
+        <nz-step nzTitle="Service Details"></nz-step>
+      </nz-steps>
+    <nz-card nzType="inner" nzTitle="Basic Details">
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="id">Appointment ID</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Appointment ID!">
-          <input nz-input formControlName="id" id="id" input nz-input placeholder="Type your code here" />
+          <input nz-input formControlName="id" id="id" input nz-input placeholder="Type your code here"/>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="date" >Date</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="date">Date</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
-          <input nz-input formControlName="date" id="date"  nz-input placeholder="Date here"/>
+          <input nz-input formControlName="date" id="date" nz-input placeholder="Date here"/>
         </nz-form-control>
       </nz-form-item>
 
@@ -43,63 +51,104 @@
       </nz-form-item>
 
 
+    </nz-card>
+    <br><br>
 
-  </nz-card>
-  <br><br>
-
-  <nz-card nzType="inner" nzTitle="Customer Details">
+    <nz-card nzType="inner" nzTitle="Customer Details">
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
-          <input nz-input formControlName="nic" id="nic" input nz-input placeholder="Type your NIC number here" />
+          <input nz-input formControlName="nic" id="nic" input nz-input placeholder="Type your NIC number here"/>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-          <input nz-input formControlName="name" id="name" input nz-input placeholder="Type your name here" />
+          <input nz-input formControlName="name" id="name" input nz-input placeholder="Type your name here"/>
         </nz-form-control>
       </nz-form-item>
 
 
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mobile" >Mobile Number</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mobile">Mobile Number</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
-          <input nz-input formControlName="mobile" id="mobile"  nz-input placeholder="Type your mobile number here"/>
+          <input nz-input formControlName="mobile" id="mobile" nz-input placeholder="Type your mobile number here"/>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" >Email Address</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Email Address</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-          <input nz-input formControlName="email" id="email"  nz-input placeholder="Type your email address here"/>
+          <input nz-input formControlName="email" id="email" nz-input placeholder="Type your email address here"/>
         </nz-form-control>
       </nz-form-item>
 
 
-  </nz-card>
+    </nz-card>
 
-  <br><br>
+    <br><br>
 
-  <nz-card nzType="inner" nzTitle="Service Details">
+    <nz-card nzType="inner" nzTitle="Service Details">
 
-    <nz-tree
-      #nzTreeComponent
-      [nzData]="nodes"
-      nzCheckable
-      [nzCheckedKeys]="defaultCheckedKeys"
-      [nzExpandedKeys]="defaultExpandedKeys"
-      [nzSelectedKeys]="defaultSelectedKeys"
-      (nzClick)="nzClick($event)"
-      (nzContextMenu)="nzClick($event)"
-      (nzCheckBoxChange)="nzCheck($event)"
-      (nzExpandChange)="nzCheck($event)"
-    >
-    </nz-tree>
 
-  </nz-card>
+      <h4>Hair</h4>
+      <nz-table #basicTable [nzShowPagination]="false" nzSize="small" [nzData]="hair">
+        <thead>
+        <tr>
+          <th>Sub-category</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Time</th>
+          <th>Select</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.subCategory.name }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.time }}</td>
+          <td
+            [nzChecked]="checkedServices.includes(data)"
+            [nzDisabled]="data.disabled"
+            (nzCheckedChange)="onItemChecked(data, $event)"
+          >
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+
+      <h4>Bridal</h4>
+      <nz-table #basicTable2 [nzShowPagination]="false" nzSize="small" [nzData]="bridal">
+        <thead>
+        <tr>
+          <th>Sub-category</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Time</th>
+          <th>Select</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable2.data">
+          <td>{{ data.subCategory.name }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.time }}</td>
+          <td
+            [nzChecked]="checkedServices.includes(data)"
+            [nzDisabled]="data.disabled"
+            (nzCheckedChange)="onItemChecked(data, $event)"
+          >
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+
+
+    </nz-card>
   </form>
 </nz-card>
 
