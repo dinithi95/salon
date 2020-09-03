@@ -12,52 +12,57 @@
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="user">User Management</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="employee">Employee</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="customer">Customer</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="calender">Calender</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="category">Category</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="subCategory">Sub-Category</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="service">Service</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="appointment">Appointment Management</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="supplier">Supplier</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="order">Purchase Orders</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="voucher">Vouchers</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="report">Reports</a>
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="dashboard"></i>
+        <a>Dashboard</a>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="user" nzTheme="outline"></i>
+        <a routerLink="user">User Management</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="usergroup-add" nzTheme="outline"></i>
+        <a routerLink="employee">Employee</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="smile" nzTheme="outline"></i>
+        <a routerLink="customer">Customer</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="calendar" nzTheme="outline"></i>
+        <a routerLink="calender">Calender</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="copy" nzTheme="outline"></i>
+        <a routerLink="category">Category</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="cluster" nzTheme="outline"></i>
+        <a routerLink="subCategory">Sub-Category</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="audit" nzTheme="outline"></i>
+        <a routerLink="service">Service</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+        <a routerLink="appointment">Appointment Management</a>
+      </li>
+<!--      <li nz-menu-item nzMatchRouter>-->
+<!--        <i nz-icon nzType="file"></i>-->
+<!--        <a routerLink="supplier">Supplier</a>-->
+<!--      </li>-->
+<!--      <li nz-menu-item nzMatchRouter>-->
+<!--        <i nz-icon nzType="file"></i>-->
+<!--        <a routerLink="order">Purchase Orders</a>-->
+<!--      </li>-->
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="money-collect" nzTheme="outline"></i>
+        <a routerLink="voucher">Vouchers</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="printer" nzTheme="outline"></i>
+        <a routerLink="report">Reports</a>
       </li>
     </ul>
   </nz-sider>
