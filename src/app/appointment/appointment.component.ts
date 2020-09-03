@@ -14,13 +14,6 @@ import {Service} from "../service/Service";
   styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent implements OnInit {
-  appointmentForm: FormGroup;
-  hair: Service[] = [];
-  bridal: Service[] = [];
-  beauty: Service[] = [];
-  checkedServices: Service[] = [];
-  current = 0;
-
   services: Service[] = [
     {
       id: '1',
@@ -143,6 +136,13 @@ export class AppointmentComponent implements OnInit {
       }
     },
   ]
+  appointmentForm: FormGroup;
+  hair: Service[] = [];
+  bridal: Service[] = [];
+  beauty: Service[] = [];
+  checkedServices: Service[] = [];
+  current = 0;
+  index = 'Basic Details';
 
   constructor(private fb: FormBuilder) {
   }
@@ -190,8 +190,16 @@ export class AppointmentComponent implements OnInit {
       this.checkedServices.push(service);
     } else {
       let index = this.checkedServices.indexOf(service);
-      if (index !== -1) { this.checkedServices.splice(index, 1); }
+      if (index !== -1) {
+        this.checkedServices.splice(index, 1);
+      }
     }
+  }
+
+  onItemChecked(service: Service, checked: boolean): void {
+    this.updateCheckedSet(service, checked);
+    // this.refreshCheckedStatus();
+    console.log(this.checkedServices);
   }
 
   // refreshCheckedStatus(): void {
@@ -199,10 +207,16 @@ export class AppointmentComponent implements OnInit {
   //   this.indeterminate = this.listOfCurrentPageData.some(item => this.checkedServices.indexOf(item)) && !this.checked;
   // }
 
-  onItemChecked(service: Service, checked: boolean): void {
-    this.updateCheckedSet(service, checked);
-    // this.refreshCheckedStatus();
-    console.log(this.checkedServices);
+  pre(): void {
+    this.current -= 1;
+  }
+
+  next(): void {
+    this.current += 1;
+  }
+
+  done(): void {
+    console.log('done');
   }
 
 }
