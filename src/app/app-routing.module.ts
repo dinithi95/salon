@@ -14,8 +14,10 @@ import {ReportComponent} from './report/report.component';
 import {CategoryComponent} from './category/category.component';
 import {SubCategoryComponent} from './sub-category/sub-category.component';
 import {ServiceComponent} from './service/service.component';
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
   {
     path: '', component: SidemenuComponent, children: [
       {path: 'user', component: UserComponent},
@@ -30,8 +32,7 @@ const routes: Routes = [
       {path: 'category', component: CategoryComponent},
       {path: 'subCategory', component: SubCategoryComponent},
       {path: 'service', component: ServiceComponent},
-
-    ]
+    ],
   },
 
 ];

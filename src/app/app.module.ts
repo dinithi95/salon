@@ -27,6 +27,7 @@ import { ReportComponent } from './report/report.component';
 import { CategoryComponent } from './category/category.component';
 import { SubCategoryComponent } from './sub-category/sub-category.component';
 import { ServiceComponent } from './service/service.component';
+import { LoginComponent } from './login/login.component';
 
 
 registerLocaleData(en);
@@ -46,7 +47,8 @@ registerLocaleData(en);
     ReportComponent,
     CategoryComponent,
     SubCategoryComponent,
-    ServiceComponent
+    ServiceComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,
