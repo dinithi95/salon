@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../services/auth.service";
+import {NzMessageService} from "ng-zorro-antd";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private authServise: AuthService,
+              private nzMessageService: NzMessageService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.formControl();
@@ -17,9 +23,8 @@ export class LoginComponent implements OnInit {
 
   formControl(){
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]]
     });
   }
 
@@ -27,6 +32,14 @@ export class LoginComponent implements OnInit {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
+    }
+
+    if (this.validateForm.controls.email.value == '' || this.validateForm.controls.password.value == '') {
+      this.nzMessageService.error('Insert Username and Password!');
+    } else if (this.validateForm.valid) {
+      this.authServise.login(this.validateForm.value);
+    } else {
+      this.nzMessageService.error('Invalid Username or Password!');
     }
   }
 
