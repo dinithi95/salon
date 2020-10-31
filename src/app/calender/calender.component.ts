@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-calender',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalenderComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  selectChange(select: Date): void {
+    console.log(`Select value: ${select}`);
   }
 
 }
