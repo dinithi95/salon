@@ -1,1 +1,69 @@
-<p>service works!</p>
+<nz-card nzTitle="SERVICE">
+
+  <form nz-form [formGroup]="serviceForm" >
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="catname">Category Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
+        <input nz-input formControlName="catname" id="catname" input nz-input placeholder="Select Category Name Here" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="subname" >Sub-Category Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="subname" id="subname"  nz-input placeholder="Select Sub-Category Name Here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="servicecode" >Service Code</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="servicecode" id="servicecode"  nz-input placeholder="Type Code Here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="servicename" >Service Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="servicename" id="servicename"  nz-input placeholder="Type Service Name Here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price" >Service Price</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="price" id="price"  nz-input placeholder="Type Service Price Here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="duration" >Duration</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="duration" id="duration"  nz-input placeholder="Type Duration Here"/>
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <div nz-row>
+      <div nz-col [nzOffset]="13" [nzSpan]="6" >
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button (click)="resetForm($event)">Reset</button>
+            <!--<button nz-button
+                    nzType="primary"
+                    [disabled]="!serviceForm.valid"
+                    nz-popconfirm
+                    nzPopconfirmTitle="Are you sure?"
+                    (nzOnConfirm)="submitForm()"
+                    nzPopconfirmPlacement="top">Submit
+            </button>-->
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+  </form>
+</nz-card>
+
+
+

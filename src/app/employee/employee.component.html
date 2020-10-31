@@ -1,6 +1,14 @@
-<nz-card nzTitle="EMPLOYEE">
+<nz-card nzTitle="EMPLOYEE MANAGEMENT">
+
+
+  <p style="font-size:15px;color:rgba(0, 0, 0, 0.85);margin-bottom:16px;font-weight: 500;">
+    Employee Registration Form
+  </p>
 
   <form nz-form [formGroup]="employeeForm" >
+    <div nz-row>
+      <div nz-col [nzMd]="12">
+
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
@@ -42,6 +50,10 @@
         <input nz-input formControlName="nic" id="nic" nz-input placeholder="Type your NIC here"/>
       </nz-form-control>
     </nz-form-item>
+
+      </div>
+
+      <div nz-col [nzMd]="12">
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" >E-mail Address</nz-form-label>
@@ -91,6 +103,7 @@
       </div>
     </nz-form-item>
 
+
     <div nz-row>
       <div nz-col [nzOffset]="13" [nzSpan]="6" >
         <nz-form-item>
@@ -108,6 +121,12 @@
         </nz-form-item>
       </div>
     </div>
+
+      </div>
+    </div>
   </form>
 </nz-card>
+
+
+
 
