@@ -1,12 +1,12 @@
 <nz-card nzTitle="USER">
 
 <form nz-form [formGroup]="userForm" >
-  <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
-      <input nz-input formControlName="code" id="code" input nz-input placeholder="Type your code here" />
-    </nz-form-control>
-  </nz-form-item>
+<!--  <nz-form-item>-->
+<!--    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>-->
+<!--    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">-->
+<!--      <input nz-input formControlName="code" id="code" input nz-input placeholder="Type your code here" />-->
+<!--    </nz-form-control>-->
+<!--  </nz-form-item>-->
   <nz-form-item>
     <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="name" >Name</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
@@ -20,20 +20,21 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid NIC!">
-      <input nz-input formControlName="nic" id="nic" nz-input placeholder="Type your NIC here"/>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Password!">
+      <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password" id="password" nz-input placeholder="Type your password here"/>
+      <ng-template #suffixTemplate>
+        <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+      </ng-template>
+      </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="gender">Gender</nz-form-label>
-    <div nz-col [nzSm]="14" [nzXs]="24">
-    <nz-select nzErrorTip="The input is not valid Gender!" nzShowSearch nzAllowClear nzPlaceHolder="Select Gender" formControlName="gender" id="gender">
-      <nz-option nzLabel="Male" nzValue="Male"></nz-option>
-      <nz-option nzLabel="Female" nzValue="Female"></nz-option>
-      <nz-option nzLabel="Other" nzValue="Other"></nz-option>
-    </nz-select>
-    </div>
+    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="password_confirmation">Confirm Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Password does not match!">
+      <input type="password" formControlName="password_confirmation" id="password_confirmation" nz-input placeholder="Type again your password here"/>
+    </nz-form-control>
   </nz-form-item>
   <div nz-row>
     <div nz-col [nzOffset]="12" [nzSpan]="2" >
@@ -59,4 +60,43 @@
     </div>
   </div>
 </form>
+</nz-card>
+
+
+
+<nz-card>
+  <nz-table #nzTable [nzData]="displayUsers" nzSize="small" nzTableLayout="fixed">
+    <thead>
+    <tr>
+      <th nzCustomFilter>
+        Name
+        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+          <i nz-icon nzType="search"></i>
+        </nz-filter-trigger>
+      </th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of nzTable.data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.email }}</td>
+      <td nzRight="0px">
+        <a (click)="fillForm(data)">Edit</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+          Search
+        </button>
+        <button nz-button nzSize="small" (click)="resetSearch()">Reset</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>
 </nz-card>
