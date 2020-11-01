@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from "@angular/common/http";
+import {Employee} from "./Employee";
+import {User} from "../user/User";
+import {EmployeeService} from "../services/employee.service";
 
 @Component({
   selector: 'app-employee',
@@ -8,36 +12,100 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class EmployeeComponent implements OnInit {
   employeeForm: FormGroup;
-  radioValue = 'Married';
+  employees: Employee[] = [];
+  displayEmployees = [...this.employees];
+  searchValue = '';
+  visible = false;
+  code = '';
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private http: HttpClient,
+              private employeeService: EmployeeService) {
+  }
 
   ngOnInit(): void {
     this.formControl();
+    this.getAllEmployees();
+    console.log("eeee", this.employees);
   }
 
   formControl() {
     this.employeeForm = this.fb.group({
       id: null,
-      code: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      birth: ['', [Validators.required]],
-      number: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      code: [''],
+      gender: ['', [Validators.required]],
+      contact: ['', [Validators.required]],
       address: ['', [Validators.required]],
       nic: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
       civilStatus: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
       designation: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
       status: ['', [Validators.required]]
     });
   }
 
   submitForm() {
-// need to create laravel backend before write this code(insert part)
+    console.log(this.employeeForm.value);
+    this.http.put(`http://localhost:8000/api/employee`, this.employeeForm.value).subscribe(value => {
+      this.resetForm();
+      this.getAllEmployees();
+    });
   }
 
-  resetForm(e: MouseEvent): void {
+  getAllEmployees() {
+    this.employeeService.getAllEmployees().subscribe(value => {
+      this.employees = value;
+      this.displayEmployees = value;
+      this.generateCode();
+    });
+  }
+
+  resetForm(): void {
     this.employeeForm.reset();
   }
+
+  onDateChange(result: Date): void {
+    console.log('onChange: ', result);
+  }
+
+  resetSearch(): void {
+    this.searchValue = '';
+    this.search();
+  }
+
+  search(): void {
+    this.visible = false;
+    this.displayEmployees = this.employees.filter((item: Employee) => item.name.indexOf(this.searchValue) !== -1);
+  }
+
+  fillForm(employee: Employee) {
+    console.log(employee)
+    this.employeeForm.patchValue({
+      id: employee.id,
+      name: employee.name,
+      email: employee.email,
+      code: employee.code,
+      gender: employee.gender,
+      contact: employee.contact,
+      address: employee.address,
+      nic: employee.nic,
+      civilStatus: employee.civilStatus,
+      dob: employee.dob,
+      designation: employee.designation,
+      status: employee.status,
+    });
+  }
+
+  generateCode() {
+    if (this.employees.length > 0) {
+      const lastCode = parseInt(this.employees[this.employees.length - 1].code, 10);
+      const nextCode = lastCode + 1;
+      this.code = nextCode.toString();
+    } else {
+      this.code = '1000';
+    }
+  }
+
 }
