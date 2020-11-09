@@ -34,7 +34,7 @@ export class EmployeeComponent implements OnInit {
       id: null,
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      code: [''],
+      code: null,
       gender: ['', [Validators.required]],
       contact: ['', [Validators.required]],
       address: ['', [Validators.required]],
@@ -47,7 +47,11 @@ export class EmployeeComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.employeeForm.value);
+    for (const key in this.employeeForm.controls) {
+      this.employeeForm.controls[key].markAsDirty();
+      this.employeeForm.controls[key].updateValueAndValidity();
+    }
+
     this.http.put(`http://localhost:8000/api/employee`, this.employeeForm.value).subscribe(value => {
       this.resetForm();
       this.getAllEmployees();
@@ -106,6 +110,7 @@ export class EmployeeComponent implements OnInit {
     } else {
       this.code = '1000';
     }
+    this.employeeForm.patchValue({code: this.code});
   }
 
 }
