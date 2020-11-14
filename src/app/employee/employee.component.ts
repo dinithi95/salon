@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Employee} from "./Employee";
 import {User} from "../user/User";
 import {EmployeeService} from "../services/employee.service";
+import {NzNotificationService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-employee',
@@ -20,7 +21,8 @@ export class EmployeeComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
-              private employeeService: EmployeeService) {
+              private employeeService: EmployeeService,
+              private notification: NzNotificationService) {
   }
 
   ngOnInit(): void {
@@ -52,14 +54,28 @@ export class EmployeeComponent implements OnInit {
       this.employeeForm.controls[key].updateValueAndValidity();
     }
 
-    this.http.put(`http://localhost:8000/api/employee`, this.employeeForm.value).subscribe(value => {
-      this.resetForm();
-      this.getAllEmployees();
-    });
+    this.http.put(`http://localhost:8000/api/employee`, this.employeeForm.value).subscribe(
+      res => {
+        this.resetForm();
+        this.showNotification('success', 'Employee Details Updated Successfully', '');
+        this.getAllEmployees();
+      },
+      err => {
+        for (const e in err.error.errors) {
+          this.showNotification('error', err.error.errors[e], '');
+          console.log(err.error.errors[e]);
+        }
+        console.log(err.error.errors);
+      });
+  }
+
+  showNotification(type: string, message: string, content: string): void {
+    this.notification.create(type, message, content);
   }
 
   getAllEmployees() {
     this.employeeService.getAllEmployees().subscribe(value => {
+      console.log('emp', value)
       this.employees = value;
       this.displayEmployees = value;
       this.generateCode();
