@@ -26,12 +26,13 @@ export class EmployeeComponent implements OnInit {
               private notification: NzNotificationService) {
   }
 
+// Call on page loading
   ngOnInit(): void {
     this.formControl();
     this.getAllEmployees();
-    console.log("eeee", this.employees);
   }
 
+// Create Form
   formControl() {
     this.employeeForm = this.fb.group({
       id: null,
@@ -49,6 +50,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+// Insert and Update Employee
   submitForm() {
     for (const key in this.employeeForm.controls) {
       this.employeeForm.controls[key].markAsDirty();
@@ -64,45 +66,43 @@ export class EmployeeComponent implements OnInit {
       err => {
         for (const e in err.error.errors) {
           this.showNotification('error', err.error.errors[e], '');
-          console.log(err.error.errors[e]);
         }
-        console.log(err.error.errors);
       });
   }
 
+// Create message
   showNotification(type: string, message: string, content: string): void {
     this.notification.create(type, message, content);
   }
 
+// Get Employee details from backend
   getAllEmployees() {
     this.employeeService.getAllEmployees().subscribe(value => {
-      console.log('emp', value)
       this.employees = value;
       this.displayEmployees = value;
       this.generateCode();
     });
   }
 
+// Form reset
   resetForm(): void {
     this.employeeForm.reset();
   }
 
-  onDateChange(result: Date): void {
-    console.log('onChange: ', result);
-  }
-
-  resetSearch(): void {
-    this.searchValue = '';
-    this.search();
-  }
-
+// Table search
   search(): void {
     this.visible = false;
     this.displayEmployees = this.employees.filter((item: Employee) => item.name.indexOf(this.searchValue) !== -1);
   }
 
+// Table search reset
+  resetSearch(): void {
+    this.searchValue = '';
+    this.search();
+  }
+
+// Fill values to form for update employee
   fillForm(employee: Employee) {
-    console.log(employee)
     this.employeeForm.patchValue({
       id: employee.id,
       name: employee.name,
@@ -119,6 +119,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+// Auto generate next code
   generateCode() {
     if (this.employees.length > 0) {
       const lastCode = parseInt(this.employees[this.employees.length - 1].code, 10);
@@ -130,8 +131,9 @@ export class EmployeeComponent implements OnInit {
     this.employeeForm.patchValue({code: this.code});
   }
 
+// Disable invalid date range
   disabledDate = (current: Date): boolean => {
     return differenceInCalendarYears(current, new Date()) > -18;
-  };
+  }
 
 }
