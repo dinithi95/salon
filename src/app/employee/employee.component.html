@@ -26,8 +26,7 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="birth" >Date of Birth</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
-        <nz-date-picker formControlName="dob" id="birth" placeholder="Date of birth here" (ngModelChange)="onDateChange($event)"></nz-date-picker>
-
+        <nz-date-picker formControlName="dob" id="birth" placeholder="Date of birth here" nzFormat="yyyy-MM-dd HH:mm:ss" [nzDisabledDate]="disabledDate"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
 

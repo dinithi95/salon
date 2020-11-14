@@ -5,6 +5,7 @@ import {Employee} from "./Employee";
 import {User} from "../user/User";
 import {EmployeeService} from "../services/employee.service";
 import {NzNotificationService} from "ng-zorro-antd";
+import {differenceInCalendarDays, differenceInCalendarYears} from "date-fns";
 
 @Component({
   selector: 'app-employee',
@@ -128,5 +129,9 @@ export class EmployeeComponent implements OnInit {
     }
     this.employeeForm.patchValue({code: this.code});
   }
+
+  disabledDate = (current: Date): boolean => {
+    return differenceInCalendarYears(current, new Date()) > -18;
+  };
 
 }
