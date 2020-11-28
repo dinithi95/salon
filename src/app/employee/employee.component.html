@@ -105,17 +105,33 @@
 
 
     <div nz-row>
-      <div nz-col [nzOffset]="13" [nzSpan]="6" >
+      <div nz-col [nzOffset]="3" [nzSpan]="6" >
         <nz-form-item>
           <nz-form-control>
             <button nz-button (click)="resetForm()">Reset</button>
-            <button nz-button
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="6" >
+        <nz-form-item>
+          <nz-form-control>
+            <button *ngIf="!update"
+                    nz-button
                     nzType="primary"
                     [disabled]="!employeeForm.valid"
                     nz-popconfirm
                     nzPopconfirmTitle="Are you sure?"
                     (nzOnConfirm)="submitForm()"
                     nzPopconfirmPlacement="top">Submit
+            </button>
+            <button *ngIf="update"
+                    nz-button
+                    nzType="primary"
+                    [disabled]="!employeeForm.valid"
+                    nz-popconfirm
+                    nzPopconfirmTitle="Are you sure?"
+                    (nzOnConfirm)="updateEmployee()"
+                    nzPopconfirmPlacement="top">Update
             </button>
           </nz-form-control>
         </nz-form-item>
