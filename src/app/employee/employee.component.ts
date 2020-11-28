@@ -26,7 +26,7 @@ export class EmployeeComponent implements OnInit {
               private notification: NzNotificationService) {
   }
 
-// Call on page loading
+// Call on page loading(page eka load wena kota 1st wada karanne meka)
   ngOnInit(): void {
     this.formControl();
     this.getAllEmployees();
@@ -75,7 +75,7 @@ export class EmployeeComponent implements OnInit {
     this.notification.create(type, message, content);
   }
 
-// Get Employee details from backend
+// Get Employee details from backend(form eka load wenakota enna employess penna one )
   getAllEmployees() {
     this.employeeService.getAllEmployees().subscribe(value => {
       this.employees = value;
@@ -84,9 +84,10 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-// Form reset
+// Form reset(loku form eka reset)
   resetForm(): void {
     this.employeeForm.reset();
+    this.generateCode();
   }
 
 // Table search
@@ -95,15 +96,15 @@ export class EmployeeComponent implements OnInit {
     this.displayEmployees = this.employees.filter((item: Employee) => item.name.indexOf(this.searchValue) !== -1);
   }
 
-// Table search reset
+// Table search reset(table search)
   resetSearch(): void {
     this.searchValue = '';
     this.search();
   }
 
-// Fill values to form for update employee
+// Fill values to form for update employee(edit ekata click kalama exsisting data ena eka )
   fillForm(employee: Employee) {
-    this.employeeForm.patchValue({
+    this.employeeForm.patchValue({//fill = patch
       id: employee.id,
       name: employee.name,
       email: employee.email,
@@ -119,7 +120,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-// Auto generate next code
+// Auto generate next code(employee code)
   generateCode() {
     if (this.employees.length > 0) {
       const lastCode = parseInt(this.employees[this.employees.length - 1].code, 10);
@@ -131,9 +132,15 @@ export class EmployeeComponent implements OnInit {
     this.employeeForm.patchValue({code: this.code});
   }
 
-// Disable invalid date range
+
+  //employee kyna array eken 1 ganane widiha
+  //employees[0]
+  //len 0 1 2 3 
+  // index 0 1 2 
+
+// Disable invalid date range(18+)
   disabledDate = (current: Date): boolean => {
-    return differenceInCalendarYears(current, new Date()) > -18;
+    return differenceInCalendarDays(current, new Date()) > -6575;
   }
 
 }
