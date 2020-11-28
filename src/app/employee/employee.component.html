@@ -26,7 +26,7 @@
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="birth" >Date of Birth</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
-        <nz-date-picker formControlName="dob" id="birth" placeholder="Date of birth here" nzFormat="yyyy-MM-dd HH:mm:ss" [nzDisabledDate]="disabledDate"></nz-date-picker>
+        <nz-date-picker formControlName="dob" id="birth" placeholder="Date of birth here" nzFormat="yyyy-MM-dd" [nzDisabledDate]="disabledDate"></nz-date-picker>
       </nz-form-control>
     </nz-form-item>
 
@@ -133,7 +133,7 @@
   <nz-table #nzTable [nzData]="displayEmployees" nzSize="small" nzTableLayout="fixed">
     <thead>
     <tr>
-      <th>code</th>
+      <th>Code</th>
       <th nzCustomFilter>
         Name
         <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">

@@ -46,7 +46,9 @@ export class UserComponent implements OnInit {
   }
 
   submitForm() {
-    this.http.put(`http://localhost:8000/api/register`, this.userForm.value).subscribe();
+    this.http.put(`http://localhost:8000/api/register`, this.userForm.value).subscribe(value =>{
+      this.getAllUsers();
+    });
   }
 
   resetForm(e: MouseEvent): void {
