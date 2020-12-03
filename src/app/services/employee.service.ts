@@ -8,8 +8,7 @@ import {Employee} from "../employee/Employee";
 })
 export class EmployeeService {
 
-  constructor(private http: HttpClient,
-              private router: Router
+  constructor(private http: HttpClient
   ) {
   }
 
