@@ -2,61 +2,94 @@
 
   <form nz-form [formGroup]="serviceForm" >
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="catname">Category Name</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
-        <input nz-input formControlName="catname" id="catname" input nz-input placeholder="Select Category Name Here" />
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code" >Service Code</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
+        <input nz-input formControlName="code" id="code" value="{{code}}" readonly placeholder="Type Code Here"/>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="subname" >Sub-Category Name</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-        <input nz-input formControlName="subname" id="subname"  nz-input placeholder="Select Sub-Category Name Here"/>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="category">Category Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid category!">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a category" formControlName="category" (ngModelChange)="getSubcategoryByCategory($event)" [compareWith]="compare">
+          <nz-option *ngFor="let category of categories" nzLabel="{{category.name}}" [nzValue]="category"></nz-option>
+        </nz-select>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="servicecode" >Service Code</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-        <input nz-input formControlName="servicecode" id="servicecode"  nz-input placeholder="Type Code Here"/>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="subcategory" >Sub-Category Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid subcategory!">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a subcategory" formControlName="subcategory_id" [compareWith]="compare">
+          <nz-option *ngFor="let subcategory of subcategories" nzLabel="{{subcategory.name}}" [nzValue]="subcategory"></nz-option>
+        </nz-select>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="servicename" >Service Name</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name" >Service Name</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-        <input nz-input formControlName="servicename" id="servicename"  nz-input placeholder="Type Service Name Here"/>
+        <input nz-input formControlName="name" id="name"  nz-input placeholder="Type Service Name Here"/>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price" >Service Price</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-        <input nz-input formControlName="price" id="price"  nz-input placeholder="Type Service Price Here"/>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid price!">
+        <nz-input-number nz-input formControlName="price" id="price" [nzStep]="0.01" placeholder="Type Service Price Here"></nz-input-number>
+        <label> LKR</label>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="duration" >Duration</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-        <input nz-input formControlName="duration" id="duration"  nz-input placeholder="Type Duration Here"/>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Duration!">
+        <input nz-input formControlName="duration" id="duration" placeholder="Type Duration Here"/>
+<!--        <nz-time-picker formControlName="duration" id="duration" placeholder="Type Duration Here" nzFormat="HH:mm:ss"></nz-time-picker>-->
+        <label> HH:MM</label>
       </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
+      <div nz-col [nzSm]="14" [nzXs]="24">
+        <nz-select nzErrorTip="The input is not valid Status!" nzShowSearch nzAllowClear nzPlaceHolder="Select Status" formControlName="status" id="status">
+          <nz-option nzLabel="Active" nzValue="Active"></nz-option>
+          <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
+        </nz-select>
+      </div>
     </nz-form-item>
 
 
     <div nz-row>
-      <div nz-col [nzOffset]="13" [nzSpan]="6" >
+      <div nz-col [nzOffset]="3" [nzSpan]="6" >
         <nz-form-item>
           <nz-form-control>
-            <button nz-button (click)="resetForm($event)">Reset</button>
-            <!--<button nz-button
+            <button nz-button (click)="resetForm()">Reset</button>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="6" >
+        <nz-form-item>
+          <nz-form-control>
+            <button *ngIf="!update"
+                    nz-button
                     nzType="primary"
                     [disabled]="!serviceForm.valid"
                     nz-popconfirm
                     nzPopconfirmTitle="Are you sure?"
                     (nzOnConfirm)="submitForm()"
                     nzPopconfirmPlacement="top">Submit
-            </button>-->
+            </button>
+            <button *ngIf="update"
+                    nz-button
+                    nzType="primary"
+                    [disabled]="!serviceForm.valid"
+                    nz-popconfirm
+                    nzPopconfirmTitle="Are you sure?"
+                    (nzOnConfirm)="updateEmployee()"
+                    nzPopconfirmPlacement="top">Update
+            </button>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -65,5 +98,50 @@
   </form>
 </nz-card>
 
+<nz-card>
+  <nz-table #nzTable [nzData]="displayServices" nzSize="small" nzTableLayout="fixed">
+    <thead>
+    <tr>
+      <th>Code</th>
+      <th nzCustomFilter>
+        Name
+        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+          <i nz-icon nzType="search"></i>
+        </nz-filter-trigger>
+      </th>
+      <th>Category</th>
+      <th>Subcategory</th>
+      <th>Price</th>
+      <th>Duration</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of nzTable.data">
+      <td>{{ data.code }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.subcategory.category.name }}</td>
+      <td>{{ data.subcategory.name }}</td>
+      <td>{{ data.price }}</td>
+      <td>{{ data.duration }}</td>
+      <td>{{ data.status }}</td>
+      <td nzRight="0px">
+        <a (click)="fillForm(data)">Edit</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+          Search
+        </button>
+        <button nz-button nzSize="small" (click)="resetSearch()">Reset</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>
 
 

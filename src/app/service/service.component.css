@@ -1,3 +1,7 @@
 .ant-form-item-label{
   text-align: left;
 }
+
+nz-input-number, nz-time-picker{
+  width: 50%;
+}

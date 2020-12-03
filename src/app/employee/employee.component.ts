@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {Employee} from "./Employee";
-import {User} from "../user/User";
 import {EmployeeService} from "../services/employee.service";
 import {NzNotificationService} from "ng-zorro-antd";
 import {differenceInCalendarDays, differenceInCalendarYears} from "date-fns";
@@ -19,6 +18,7 @@ export class EmployeeComponent implements OnInit {
   searchValue = '';
   visible = false;
   code = '';
+  update = false;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
@@ -50,8 +50,28 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-// Insert and Update Employee
+// Insert Employee
   submitForm() {
+    for (const key in this.employeeForm.controls) {
+      this.employeeForm.controls[key].markAsDirty();
+      this.employeeForm.controls[key].updateValueAndValidity();
+    }
+
+    this.http.post(`http://localhost:8000/api/employee`, this.employeeForm.value).subscribe(
+      res => {
+        this.resetForm();
+        this.showNotification('success', 'Employee Details Saved Successfully', '');
+        this.getAllEmployees();
+      },
+      err => {
+        for (const e in err.error.errors) {
+          this.showNotification('error', err.error.errors[e], '');
+        }
+      });
+  }
+
+  // Update Employee
+  updateEmployee() {
     for (const key in this.employeeForm.controls) {
       this.employeeForm.controls[key].markAsDirty();
       this.employeeForm.controls[key].updateValueAndValidity();
@@ -62,6 +82,7 @@ export class EmployeeComponent implements OnInit {
         this.resetForm();
         this.showNotification('success', 'Employee Details Updated Successfully', '');
         this.getAllEmployees();
+        this.update = false;
       },
       err => {
         for (const e in err.error.errors) {
@@ -87,6 +108,7 @@ export class EmployeeComponent implements OnInit {
 // Form reset(loku form eka reset)
   resetForm(): void {
     this.employeeForm.reset();
+    this.update = false;
     this.generateCode();
   }
 
@@ -118,6 +140,7 @@ export class EmployeeComponent implements OnInit {
       designation: employee.designation,
       status: employee.status,
     });
+    this.update = true;
   }
 
 // Auto generate next code(employee code)
@@ -135,8 +158,8 @@ export class EmployeeComponent implements OnInit {
 
   //employee kyna array eken 1 ganane widiha
   //employees[0]
-  //len 0 1 2 3 
-  // index 0 1 2 
+  //len 0 1 2 3
+  // index 0 1 2
 
 // Disable invalid date range(18+)
   disabledDate = (current: Date): boolean => {
