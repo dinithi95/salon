@@ -19,19 +19,20 @@ export class CustomerComponent implements OnInit {
   searchValue = '';
   visible = false;
   code = '';
+  update = false;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
               private customerService: CustomerService,
               private notification: NzNotificationService) {}
   
-
+// Call on page loading(page eka load wena kota 1st wada karanne meka)
   ngOnInit(): void {
     this.formControl();
     this.getAllCustomers();
    
   }
-
+// Create Form
   formControl() {
     this.customerForm = this.fb.group({
       id: null,
@@ -51,14 +52,14 @@ export class CustomerComponent implements OnInit {
 
   }
 
-  // Insert and Update Customer
+  // Insert Customer
   submitForm() {
     for (const key in this.customerForm.controls) {
       this.customerForm.controls[key].markAsDirty();
       this.customerForm.controls[key].updateValueAndValidity();
     }
 
-    this.http.put(`http://localhost:8000/api/customer`, this.customerForm.value).subscribe(
+    this.http.post(`http://localhost:8000/api/customer`, this.customerForm.value).subscribe(
       res => {
         this.resetForm();
         this.showNotification('success', 'Customer Details Updated Successfully', '');
@@ -70,6 +71,30 @@ export class CustomerComponent implements OnInit {
         }
       });
   }
+
+
+  // Update Customer
+  updateCustomer() {
+    for (const key in this.customerForm.controls) {
+      this.customerForm.controls[key].markAsDirty();
+      this.customerForm.controls[key].updateValueAndValidity();
+    }
+
+    this.http.put(`http://localhost:8000/api/customer`, this.customerForm.value).subscribe(
+      res => {
+        this.resetForm();
+        this.showNotification('success', 'Customer Details Updated Successfully', '');
+        this.getAllCustomers();
+        this.update = false;
+      },
+      err => {
+        for (const e in err.error.errors) {
+          this.showNotification('error', err.error.errors[e], '');
+        }
+      });
+  }
+
+
 
   // Create message
   showNotification(type: string, message: string, content: string): void {
@@ -88,6 +113,8 @@ export class CustomerComponent implements OnInit {
   // Form reset(loku form eka reset)
   resetForm(): void {
     this.customerForm.reset();
+    this.update = false;
+    this.generateCode();
   }
 
 
@@ -120,6 +147,7 @@ export class CustomerComponent implements OnInit {
       postal: customer.postal,
       town: customer.town,
     });
+    this.update = true;
   }
 
   // Auto generate next code(customer code)
