@@ -17,7 +17,7 @@ export class AuthService {
     return this.http.post<any>(`http://localhost:8000/api/login`, val, {headers: reqH}).subscribe(res => {
       if (res.token) {
         localStorage.setItem('token', res.token);
-        this.router.navigate(['']);
+        this.router.navigate(['admin']);
       }
     });
   }
@@ -25,4 +25,18 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  isLoggedIn() {
+    if (localStorage.getItem('token')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
 }

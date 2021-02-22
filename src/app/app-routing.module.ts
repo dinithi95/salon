@@ -15,11 +15,15 @@ import {CategoryComponent} from './category/category.component';
 import {SubCategoryComponent} from './sub-category/sub-category.component';
 import {ServiceComponent} from './service/service.component';
 import {LoginComponent} from "./login/login.component";
+import {AuthGuard} from "./auth.guard";
+import {NotFoundErrorComponent} from "./error/not-found-error/not-found-error.component";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {
-    path: '', component: SidemenuComponent, children: [
+    path: 'admin', component: SidemenuComponent, canActivate: [AuthGuard], children: [
       {path: 'user', component: UserComponent},
       {path: 'employee', component: EmployeeComponent},
       {path: 'customer', component: CustomerComponent},
@@ -34,6 +38,7 @@ const routes: Routes = [
       {path: 'service', component: ServiceComponent},
     ],
   },
+  {path: '**', component: NotFoundErrorComponent},
 
 ];
 

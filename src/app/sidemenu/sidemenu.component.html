@@ -6,12 +6,12 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-<!--      <a href="https://ng.ant.design/" target="_blank">-->
-        <img src="../../assets/logo.jpg" alt="logo">
-        <h1>Salon Bashis</h1>
-<!--      </a>-->
+      <!--      <a href="https://ng.ant.design/" target="_blank">-->
+      <img src="../../assets/logo.jpg" alt="logo">
+      <h1>Salon Bashis</h1>
+      <!--      </a>-->
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" >
+    <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item nzMatchRouter>
         <a><i nz-icon nzType="dashboard"></i>
           <span>Dashboard</span></a>
@@ -48,14 +48,14 @@
         <a routerLink="appointment"><i nz-icon nzType="edit" nzTheme="outline"></i>
           <span>Appointment Management</span></a>
       </li>
-<!--      <li nz-menu-item nzMatchRouter>-->
-<!--        <i nz-icon nzType="file"></i>-->
-<!--        <a routerLink="supplier">Supplier</a>-->
-<!--      </li>-->
-<!--      <li nz-menu-item nzMatchRouter>-->
-<!--        <i nz-icon nzType="file"></i>-->
-<!--        <a routerLink="order">Purchase Orders</a>-->
-<!--      </li>-->
+      <!--      <li nz-menu-item nzMatchRouter>-->
+      <!--        <i nz-icon nzType="file"></i>-->
+      <!--        <a routerLink="supplier">Supplier</a>-->
+      <!--      </li>-->
+      <!--      <li nz-menu-item nzMatchRouter>-->
+      <!--        <i nz-icon nzType="file"></i>-->
+      <!--        <a routerLink="order">Purchase Orders</a>-->
+      <!--      </li>-->
       <li nz-menu-item nzMatchRouter>
         <a routerLink="voucher"><i nz-icon nzType="money-collect" nzTheme="outline"></i>
           <span>Vouchers</span></a>
@@ -74,6 +74,9 @@
                nz-icon
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></i>
+        </span>
+        <span *ngIf="isLoggedIn()" style="float: right">
+          <button nz-button nzType="primary" nzSize="small" nzShape="circle" (click)="logout()"><i nz-icon nzType="logout" ></i></button>
         </span>
       </div>
     </nz-header>

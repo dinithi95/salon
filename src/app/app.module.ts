@@ -29,6 +29,8 @@ import {SubCategoryComponent} from './sub-category/sub-category.component';
 import {ServiceComponent} from './service/service.component';
 import {LoginComponent} from './login/login.component';
 import {TokenInterceptorService} from "./services/token-interceptor.service";
+import { NotFoundErrorComponent } from './error/not-found-error/not-found-error.component';
+import { HomeComponent } from './home/home.component';
 
 
 registerLocaleData(en);
@@ -49,7 +51,9 @@ registerLocaleData(en);
     CategoryComponent,
     SubCategoryComponent,
     ServiceComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundErrorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
