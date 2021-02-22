@@ -10,7 +10,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
-  getAllCategory() {
-    return this.http.get<Category[]>('http://localhost:8000/api/category');
+  getAllCategories() {
+    return this.http.get<Category[]>('http://localhost:8000/api/category');//yata thiyena table,service form eke category drop down
   }
 }

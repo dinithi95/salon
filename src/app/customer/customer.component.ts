@@ -19,46 +19,47 @@ export class CustomerComponent implements OnInit {
   searchValue = '';
   visible = false;
   code = '';
+  update = false;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
               private customerService: CustomerService,
               private notification: NzNotificationService) {}
   
-
+// Call on page loading(page eka load wena kota 1st wada karanne meka)
   ngOnInit(): void {
     this.formControl();
     this.getAllCustomers();
    
   }
-
+// Create Form
   formControl() {
     this.customerForm = this.fb.group({
       id: null,
       code: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$')]],
       birth: ['', [Validators.required]],
-      nic: ['', [Validators.required]],
+      nic: ['', [Validators.required, Validators.pattern('^([0-9]{9}[x|X|v|V]|[0-9]{12})$')]],
       address: ['', [Validators.required]],
       postal: ['', [Validators.required]],
-      town: ['', [Validators.required]],
-      district: ['', [Validators.required]],
+      town: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$')]],
+      district: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$')]],
       land: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
+      mobile: ['', [Validators.required,Validators.pattern('07[1,2,5,6,7,8][0-9]')]],
       email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]],
       civilStatus: ['', [Validators.required]],
     });
 
   }
 
-  // Insert and Update Customer
+  // Insert Customer
   submitForm() {
     for (const key in this.customerForm.controls) {
       this.customerForm.controls[key].markAsDirty();
       this.customerForm.controls[key].updateValueAndValidity();
     }
 
-    this.http.put(`http://localhost:8000/api/customer`, this.customerForm.value).subscribe(
+    this.http.post(`http://localhost:8000/api/customer`, this.customerForm.value).subscribe(
       res => {
         this.resetForm();
         this.showNotification('success', 'Customer Details Updated Successfully', '');
@@ -70,6 +71,30 @@ export class CustomerComponent implements OnInit {
         }
       });
   }
+
+
+  // Update Customer
+  updateCustomer() {
+    for (const key in this.customerForm.controls) {
+      this.customerForm.controls[key].markAsDirty();
+      this.customerForm.controls[key].updateValueAndValidity();
+    }
+
+    this.http.put(`http://localhost:8000/api/customer`, this.customerForm.value).subscribe(
+      res => {
+        this.resetForm();
+        this.showNotification('success', 'Customer Details Updated Successfully', '');
+        this.getAllCustomers();
+        this.update = false;
+      },
+      err => {
+        for (const e in err.error.errors) {
+          this.showNotification('error', err.error.errors[e], '');
+        }
+      });
+  }
+
+
 
   // Create message
   showNotification(type: string, message: string, content: string): void {
@@ -88,6 +113,8 @@ export class CustomerComponent implements OnInit {
   // Form reset(loku form eka reset)
   resetForm(): void {
     this.customerForm.reset();
+    this.update = false;
+    this.generateCode();
   }
 
 
@@ -120,6 +147,7 @@ export class CustomerComponent implements OnInit {
       postal: customer.postal,
       town: customer.town,
     });
+    this.update = true;
   }
 
   // Auto generate next code(customer code)

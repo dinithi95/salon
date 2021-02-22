@@ -33,7 +33,7 @@ export class ServiceComponent implements OnInit {
               private serviceService: ServiceService,
               private notification: NzNotificationService) {
   }
-
+//create page(form eke field tika hadila intial awshaya data tika genalla thiygnnwa , gennla thiygenne databse eken)
   ngOnInit(): void {
     this.formControl();
     this.getCategory();
@@ -54,14 +54,14 @@ export class ServiceComponent implements OnInit {
   }
 
   getCategory() {
-    this.categoryService.getAllCategory().subscribe(value => {
+    this.categoryService.getAllCategories().subscribe(value => {
       console.log("cat........", value);
       this.categories = value;
     });
   }
 
-  getSubcategoryByCategory(id) {
-    this.subcategoryService.getSubcategoryByCategory(id.id).subscribe(value => {
+  getSubcategoryByCategory(category) {
+    this.subcategoryService.getSubcategoryByCategory(category.id).subscribe(value => {
       this.subcategories = value;
     });
   }
@@ -83,7 +83,7 @@ export class ServiceComponent implements OnInit {
     }
 
     const sub: Subcategory = this.serviceForm.get('subcategory_id').value;
-    console.log("vvvaaaaaa", sub);
+    // console.log("vvvaaaaaa", sub);
     this.serviceForm.controls.subcategory_id.setValue(sub.id);
 
     this.http.post(`http://localhost:8000/api/service`, this.serviceForm.value).subscribe(
@@ -177,9 +177,9 @@ export class ServiceComponent implements OnInit {
   }
 
 // Compare select
-  compares = (o1: any, o2: any) => o1 && o2 ? o1 === o2.id : o1 === o2;
-  compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
-  compareString = (o1: any, o2: any) => o1 === o2;
+  // compares = (o1: any, o2: any) => o1 && o2 ? o1 === o2.id : o1 === o2;
+  compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2; //obj
+  // compareString = (o1: any, o2: any) => o1 === o2; //string
 
 }
 

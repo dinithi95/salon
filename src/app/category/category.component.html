@@ -16,11 +16,21 @@
     </nz-form-item>
 
     <div nz-row>
-      <div nz-col [nzOffset]="13" [nzSpan]="6" >
+
+      <div nz-col [nzOffset]="3" [nzSpan]="6" >
         <nz-form-item>
           <nz-form-control>
             <button nz-button (click)="resetForm($event)">Reset</button>
-            <button nz-button
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+          
+      <div nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-control>
+
+            <button *ngIf="!update"
+                    nz-button
                     nzType="primary"
                     [disabled]="!categoryForm.valid"
                     nz-popconfirm
@@ -28,12 +38,54 @@
                     (nzOnConfirm)="submitForm()"
                     nzPopconfirmPlacement="top">Submit
             </button>
+
+            <button *ngIf="!update" nz-button nzType="primary" [disabled]="!categoryForm.valid" nz-popconfirm
+              nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="updateCategory()" nzPopconfirmPlacement="top">Submit
+            </button>
+
           </nz-form-control>
         </nz-form-item>
       </div>
-    </div>
 
-  </form>
+    </div>
+</form>
 </nz-card>
+
+<nz-card>
+  <nz-table #nzTable [nzData]="displayCategories" nzSize="small" nzTableLayout="fixed">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th nzCustomFilter>
+          Name
+          <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+            <i nz-icon nzType="search"></i>
+          </nz-filter-trigger>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td>{{ data.code }}</td>
+        <td>{{ data.name }}</td>
+        
+        <td nzRight="0px">
+          <a (click)="fillForm(data)">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+          Search
+        </button>
+        <button nz-button nzSize="small" (click)="resetSearch()">Reset</button>
+      </div>
+    </div>
+  </nz-dropdown-menu>
+
 
 
