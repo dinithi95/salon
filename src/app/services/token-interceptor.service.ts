@@ -18,6 +18,9 @@ export class TokenInterceptorService implements HttpInterceptor {
   }
 
   intercept(req, next) {
+    if (req.url === 'http://localhost:8000/api/login'){
+      return next.handle(req);
+    }
     const authService = this.injector.get(AuthService);
     const token = authService.getToken();
     const tokenizedReq = req.clone(
@@ -28,6 +31,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
 
     return next.handle(tokenizedReq).pipe(catchError((err) => {
+      console.log(err);
       if (err instanceof HttpErrorResponse) {
         if (err.status == 401 || err.status == 403) {
           this.notification.create('error', 'Please Login !', 'You are Unauthorized');
