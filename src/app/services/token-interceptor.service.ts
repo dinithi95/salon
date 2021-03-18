@@ -18,7 +18,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   }
 
   intercept(req, next) {
-    if (req.url === 'http://localhost:8000/api/login'){
+    if (req.url === 'http://localhost:8000/api/login' || req.url === 'http://localhost:8000/api/user' || req.url === 'http://localhost:8000/api/role'){
       return next.handle(req);
     }
     const authService = this.injector.get(AuthService);

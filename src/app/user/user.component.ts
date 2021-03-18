@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./User";
 import {UserService} from "../services/user.service";
+import {Role} from "./Role";
 
 @Component({
   selector: 'app-user',
@@ -16,6 +17,7 @@ export class UserComponent implements OnInit {
   searchValue = '';
   visible = false;
   users: User[] = [];
+  roles: Role[] = [];
   displayUsers = [...this.users];
 
   constructor(private fb: FormBuilder,
@@ -26,6 +28,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.formControl();
     this.getAllUsers();
+    this.getAllRoles();
   }
 
   formControl() {
@@ -34,7 +37,8 @@ export class UserComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      password_confirmation: ['', [Validators.required, this.confirmationValidator]]
+      password_confirmation: ['', [Validators.required, this.confirmationValidator]],
+      roles: ['', this.fb.array([]), [Validators.required]]
     });
   }
 
@@ -45,8 +49,22 @@ export class UserComponent implements OnInit {
     });
   }
 
+  getAllRoles() {
+    this.userService.getAllRoles().subscribe(value => {
+      console.log(value);
+      this.roles = value;
+    });
+  }
+
   submitForm() {
-    this.http.put(`http://localhost:8000/api/register`, this.userForm.value).subscribe(value =>{
+    const selectedRoles: Role = this.userForm.get('roles').value;
+    const insertRoles = [];
+
+    for (const r in selectedRoles) {
+      insertRoles.push(r.id);
+    }
+    console.log(insertRoles);
+    this.http.put(`http://localhost:8000/api/user`, this.userForm.value).subscribe(value => {
       this.getAllUsers();
     });
   }

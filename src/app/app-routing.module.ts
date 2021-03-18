@@ -22,9 +22,9 @@ import {HomeComponent} from "./home/home.component";
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'user', component: UserComponent},
   {
     path: 'admin', component: SidemenuComponent, canActivate: [AuthGuard], children: [
-      {path: 'user', component: UserComponent},
       {path: 'employee', component: EmployeeComponent},
       {path: 'customer', component: CustomerComponent},
       {path: 'appointment', component: AppointmentComponent},

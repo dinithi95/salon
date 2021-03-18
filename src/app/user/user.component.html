@@ -36,6 +36,18 @@
       <input type="password" formControlName="password_confirmation" id="password_confirmation" nz-input placeholder="Type again your password here"/>
     </nz-form-control>
   </nz-form-item>
+
+<nz-form-item>
+  <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="roles">Roles</nz-form-label>
+  <nz-select nzMode="multiple"
+             nzPlaceHolder="Select users"
+             nzAllowClear
+             nzShowSearch
+             nzServerSearch formControlName="roles" >
+    <nz-option *ngFor="let option of roles" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
+  </nz-select>
+</nz-form-item>
+
   <div nz-row>
     <div nz-col [nzOffset]="12" [nzSpan]="2" >
       <nz-form-item>
