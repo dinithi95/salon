@@ -39,11 +39,16 @@
 
 <nz-form-item>
   <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="roles">Roles</nz-form-label>
-  <nz-select nzMode="multiple"
-             nzPlaceHolder="Select users"
+<!--  <div *ngFor="let role of roles; let i=index">-->
+<!--    <label nz-checkbox [(ngModel)]="checked" formControlName="roles" value="{{role.id}}"-->
+<!--           (change)="onCheckboxChange($event)">{{role.name}}</label>-->
+
+<!--  </div>-->
+  <nz-select nzPlaceHolder="Select roles"
+             nzMode="multiple"
              nzAllowClear
              nzShowSearch
-             nzServerSearch formControlName="roles" >
+             nzServerSearch formControlName="roles">
     <nz-option *ngFor="let option of roles" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
   </nz-select>
 </nz-form-item>
@@ -87,6 +92,7 @@
         </nz-filter-trigger>
       </th>
       <th>Email</th>
+      <th>Roles</th>
       <th>Action</th>
     </tr>
     </thead>
@@ -94,6 +100,7 @@
     <tr *ngFor="let data of nzTable.data">
       <td>{{ data.name }}</td>
       <td>{{ data.email }}</td>
+      <td><span *ngFor="let role of data.roles">{{role.name}} </span></td>
       <td nzRight="0px">
         <a (click)="fillForm(data)">Edit</a>
       </td>

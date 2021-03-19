@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./User";
 import {UserService} from "../services/user.service";
@@ -19,6 +19,7 @@ export class UserComponent implements OnInit {
   users: User[] = [];
   roles: Role[] = [];
   displayUsers = [...this.users];
+  checked = false;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
@@ -38,7 +39,7 @@ export class UserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       password_confirmation: ['', [Validators.required, this.confirmationValidator]],
-      roles: ['', this.fb.array([]), [Validators.required]]
+      roles: [[], [Validators.required]],
     });
   }
 
@@ -57,13 +58,15 @@ export class UserComponent implements OnInit {
   }
 
   submitForm() {
-    const selectedRoles: Role = this.userForm.get('roles').value;
-    const insertRoles = [];
-
-    for (const r in selectedRoles) {
-      insertRoles.push(r.id);
-    }
-    console.log(insertRoles);
+    // const selectedRoles: Role = this.userForm.get('roles').value;
+    // console.log(selectedRoles, 'eeeeeeee');
+    // const insertRoles = [];
+    //
+    // for (const r in selectedRoles) {
+    //   insertRoles.push(r.id);
+    // }
+    // console.log(insertRoles);
+    // this.userForm.controls.roles.setValue(selectedRoles.id);
     this.http.put(`http://localhost:8000/api/user`, this.userForm.value).subscribe(value => {
       this.getAllUsers();
     });
@@ -94,6 +97,25 @@ export class UserComponent implements OnInit {
 
   fillForm(data: User) {
 
+  }
+
+  onCheckboxChange(e) {
+    const checkArray: FormArray = this.userForm.get('roles') as FormArray;
+    console.log(e.target, 'ttttttttttttttt');
+
+    if (e.target.selected) {
+      checkArray.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+    console.log(this.userForm.value, 'vaaaaaaaaaaaa');
   }
 
 }

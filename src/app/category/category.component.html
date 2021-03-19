@@ -20,11 +20,11 @@
       <div nz-col [nzOffset]="3" [nzSpan]="6" >
         <nz-form-item>
           <nz-form-control>
-            <button nz-button (click)="resetForm($event)">Reset</button>
+            <button nz-button (click)="resetForm()">Reset</button>
           </nz-form-control>
         </nz-form-item>
       </div>
-          
+
       <div nz-col [nzSpan]="6">
         <nz-form-item>
           <nz-form-control>
@@ -68,7 +68,7 @@
       <tr *ngFor="let data of nzTable.data">
         <td>{{ data.code }}</td>
         <td>{{ data.name }}</td>
-        
+
         <td nzRight="0px">
           <a (click)="fillForm(data)">Edit</a>
         </td>

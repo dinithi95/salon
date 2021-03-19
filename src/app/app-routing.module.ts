@@ -23,8 +23,9 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user', component: UserComponent},
+  {path: 'appointment', component: AppointmentComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier', 'Customer']}},
   {
-    path: 'admin', component: SidemenuComponent, canActivate: [AuthGuard], children: [
+    path: 'admin', component: SidemenuComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}, children: [
       {path: 'employee', component: EmployeeComponent},
       {path: 'customer', component: CustomerComponent},
       {path: 'appointment', component: AppointmentComponent},
