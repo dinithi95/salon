@@ -28,9 +28,9 @@ export class AuthService {
                 roles.push(role.name);
               });
               localStorage.setItem('roles', JSON.stringify(roles));
+              this.router.navigate(['/']);
             }
           });
-          this.router.navigate(['admin']);
         }
       },
       err => {
