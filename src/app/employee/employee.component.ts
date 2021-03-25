@@ -64,6 +64,7 @@ export class EmployeeComponent implements OnInit {
         this.getAllEmployees();
       },
       err => {
+        console.log(err, "eeeeeeee");
         for (const e in err.error.errors) {
           this.showNotification('error', err.error.errors[e], '');
         }
@@ -166,4 +167,13 @@ export class EmployeeComponent implements OnInit {
     return differenceInCalendarDays(current, new Date()) > -6575;
   }
 
+  delete(id: any) {
+    this.employeeService.delete(id).subscribe(res => {
+      this.showNotification('success', 'Successfully Deleted', '');
+      this.getAllEmployees();
+    }, err => {
+      console.log(err);
+      this.showNotification('error', 'Error', '');
+    });
+  }
 }

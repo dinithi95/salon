@@ -16,4 +16,7 @@ export class EmployeeService {
     return this.http.get<Employee[]>('http://localhost:8000/api/employee');
   }
 
+  delete(id: any) {
+    return this.http.delete<Employee[]>(`http://localhost:8000/api/employee/${id}`);
+  }
 }

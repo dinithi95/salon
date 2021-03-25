@@ -172,7 +172,7 @@
       <td>{{ data.designation }}</td>
       <td>{{ data.contact }}</td>
       <td nzRight="0px">
-        <a (click)="fillForm(data)">Edit</a>
+        <a nz-button nzType="link" (click)="fillForm(data)">Edit</a> | <a nz-button nzType="link" nzDanger nz-popconfirm nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="delete(data.id)" >Delete</a>
       </td>
     </tr>
     </tbody>
