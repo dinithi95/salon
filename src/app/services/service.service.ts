@@ -13,4 +13,7 @@ export class ServiceService {
   getAllService(){
     return this.http.get<Service[]>('http://localhost:8000/api/service');
   }
+   delete(id: any) {
+    return this.http.delete<Service[]>(`http://localhost:8000/api/service/${id}`);
+  }
 }

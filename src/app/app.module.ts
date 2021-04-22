@@ -31,6 +31,9 @@ import {LoginComponent} from './login/login.component';
 import {TokenInterceptorService} from "./services/token-interceptor.service";
 import { NotFoundErrorComponent } from './error/not-found-error/not-found-error.component';
 import { HomeComponent } from './home/home.component';
+import { StockComponent } from './stock/stock.component';
+import { GrnComponent } from './grn/grn.component';
+import { ItemComponent } from './item/item.component';
 
 
 registerLocaleData(en);
@@ -53,7 +56,10 @@ registerLocaleData(en);
     ServiceComponent,
     LoginComponent,
     NotFoundErrorComponent,
-    HomeComponent
+    HomeComponent,
+    StockComponent,
+    GrnComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,

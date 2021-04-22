@@ -1,68 +1,105 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
     <div class="sidebar-logo">
       <!--      <a href="https://ng.ant.design/" target="_blank">-->
-      <img src="../../assets/logo.jpg" alt="logo">
+      <img src="../../assets/logo.jpg" alt="logo" />
       <h1>Salon Bashis</h1>
       <!--      </a>-->
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item nzMatchRouter>
-        <a><i nz-icon nzType="dashboard"></i>
-          <span>Dashboard</span></a>
+        <a><i nz-icon nzType="dashboard"></i> <span>Dashboard</span></a>
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="user"><i nz-icon nzType="user" nzTheme="outline"></i>
-          <span>User Management</span></a>
+        <a routerLink="user"
+          ><i nz-icon nzType="user" nzTheme="outline"></i>
+          <span>User Management</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="employee"><i nz-icon nzType="usergroup-add" nzTheme="outline"></i>
-          <span>Employee</span></a>
+        <a routerLink="employee"
+          ><i nz-icon nzType="usergroup-add" nzTheme="outline"></i>
+          <span>Employee</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="customer"><i nz-icon nzType="smile" nzTheme="outline"></i>
-          <span>Customer</span></a>
+        <a routerLink="customer"
+          ><i nz-icon nzType="smile" nzTheme="outline"></i>
+          <span>Customer</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="calender"><i nz-icon nzType="calendar" nzTheme="outline"></i>
-          <span>Calender</span></a>
+        <a routerLink="calender"
+          ><i nz-icon nzType="calendar" nzTheme="outline"></i>
+          <span>Calender</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="category"><i nz-icon nzType="copy" nzTheme="outline"></i>
-          <span>Category</span></a>
+        <a routerLink="category"
+          ><i nz-icon nzType="copy" nzTheme="outline"></i>
+          <span>Category</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="subCategory"><i nz-icon nzType="cluster" nzTheme="outline"></i>
-          <span>Sub-Category</span></a>
+        <a routerLink="subCategory"
+          ><i nz-icon nzType="cluster" nzTheme="outline"></i>
+          <span>Sub-Category</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="service"><i nz-icon nzType="audit" nzTheme="outline"></i>
-          <span>Service</span></a>
+        <a routerLink="service"
+          ><i nz-icon nzType="audit" nzTheme="outline"></i>
+          <span>Service</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="appointment"><i nz-icon nzType="edit" nzTheme="outline"></i>
-          <span>Appointment Management</span></a>
-      </li>
-      <!--      <li nz-menu-item nzMatchRouter>-->
-      <!--        <i nz-icon nzType="file"></i>-->
-      <!--        <a routerLink="supplier">Supplier</a>-->
-      <!--      </li>-->
-      <!--      <li nz-menu-item nzMatchRouter>-->
-      <!--        <i nz-icon nzType="file"></i>-->
-      <!--        <a routerLink="order">Purchase Orders</a>-->
-      <!--      </li>-->
-      <li nz-menu-item nzMatchRouter>
-        <a routerLink="voucher"><i nz-icon nzType="money-collect" nzTheme="outline"></i>
-          <span>Vouchers</span></a>
+        <a routerLink="appointment"
+          ><i nz-icon nzType="edit" nzTheme="outline"></i>
+          <span>Appointment Management</span></a
+        >
       </li>
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="report"><i nz-icon nzType="printer" nzTheme="outline"></i>
-          <span>Reports</span></a>
+        <i nz-icon nzType="usergroup-add" nzTheme="outline"></i>
+        <a routerLink="supplier">Supplier</a>
+      </li>
+
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="file"></i>
+        <a routerLink="item">Item</a>
+      </li>
+
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="file"></i>
+        <a routerLink="order">Purchase Orders</a>
+      </li>
+
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="stock" nzTheme="outline"></i>
+        <a routerLink="grn">Goods Receive Note</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <i nz-icon nzType="stock" nzTheme="outline"></i>
+        <a routerLink="stock">Stock</a>
+      </li>
+
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="voucher"
+          ><i nz-icon nzType="money-collect" nzTheme="outline"></i>
+          <span>Vouchers</span></a
+        >
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="report"
+          ><i nz-icon nzType="printer" nzTheme="outline"></i>
+          <span>Reports</span></a
+        >
       </li>
     </ul>
   </nz-sider>
@@ -70,19 +107,27 @@
     <nz-header>
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
         </span>
         <span *ngIf="isLoggedIn()" style="float: right">
-          <button nz-button nzType="primary" nzSize="small" nzShape="circle" (click)="logout()"><i nz-icon nzType="logout" ></i></button>
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="small"
+            nzShape="circle"
+            (click)="logout()"
+          >
+            <i nz-icon nzType="logout"></i>
+          </button>
         </span>
       </div>
     </nz-header>
     <nz-content>
       <div class="inner-content">
-
         <router-outlet></router-outlet>
       </div>
     </nz-content>

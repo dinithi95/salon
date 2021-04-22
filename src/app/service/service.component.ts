@@ -16,10 +16,10 @@ import {Service} from "./Service";
 })
 export class ServiceComponent implements OnInit {
   serviceForm: FormGroup;
-  categories: Category[];
-  subcategories: Subcategory[];
-  services: Service[];
-  displayServices: Service[];
+  categories: Category[] = [];
+  subcategories: Subcategory[] = [];
+  services: Service[] = [];
+  displayServices: Service[] = [];
   code = "";
   update = false;
   visible = false;
@@ -48,7 +48,7 @@ export class ServiceComponent implements OnInit {
       category: ['', [Validators.required]],
       subcategory_id: ['', [Validators.required]],
       price: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
+      duration: ['', [Validators.required, Validators.pattern('^[0-9]{2}:[0-9]{2}$')]],
       status: ['', [Validators.required]]
     });
   }
@@ -99,8 +99,8 @@ export class ServiceComponent implements OnInit {
       });
   }
 
-  // Update Employee
-  updateEmployee() {
+  // Update Service
+  updateService() {
     for (const key in this.serviceForm.controls) {
       this.serviceForm.controls[key].markAsDirty();
       this.serviceForm.controls[key].updateValueAndValidity();
@@ -138,7 +138,7 @@ export class ServiceComponent implements OnInit {
       id: service.id,
       name: service.name,
       code: service.code,
-      category: service.subcategory.category,
+      category: service.subcategory.category_id,
       subcategory_id: service.subcategory,
       price: service.price,
       duration: service.duration,
@@ -177,9 +177,19 @@ export class ServiceComponent implements OnInit {
   }
 
 // Compare select
-  // compares = (o1: any, o2: any) => o1 && o2 ? o1 === o2.id : o1 === o2;
+  compares = (o1: any, o2: any) => o1 && o2 ? o1 === o2.id : o1 === o2;
   compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2; //obj
   // compareString = (o1: any, o2: any) => o1 === o2; //string
+
+  delete(id: any) {
+    this.serviceService.delete(id).subscribe(res => {
+      this.showNotification('success', 'Successfully Deleted', '');
+      this.getAllServices();
+    }, err => {
+      console.log(err);
+      this.showNotification('error', 'Error', 'Cannot Delete Service');
+    });
+  }
 
 }
 

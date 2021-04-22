@@ -12,4 +12,5 @@ export interface Customer {
   land: string;
   mobile: string;
   email: string;
+  status: string;
 }

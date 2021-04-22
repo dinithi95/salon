@@ -35,16 +35,16 @@
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="end">End Time</nz-form-label>
+          <!--nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="end">End Time</nz-form-label>-->
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Time!">
-            <input nz-input formControlName="end" id="end" nz-input placeholder="End Time here"/>
+            <input hidden nz-input formControlName="end" id="end" nz-input placeholder="End Time here"/>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cost">Cost</nz-form-label>
+          <!-- <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="cost">Cost</nz-form-label> -->
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Cost!">
-            <input nz-input formControlName="cost" id="cost" nz-input placeholder="Total Cost"/>
+            <input hidden nz-input formControlName="cost" id="cost" nz-input placeholder="Total Cost"/>
           </nz-form-control>
         </nz-form-item>
 

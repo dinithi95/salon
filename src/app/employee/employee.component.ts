@@ -14,7 +14,7 @@ import {differenceInCalendarDays, differenceInCalendarYears} from "date-fns";
 export class EmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   employees: Employee[] = [];
-  displayEmployees = [...this.employees];
+  displayEmployees: Employee[] = [];
   searchValue = '';
   visible = false;
   code = '';
@@ -36,13 +36,13 @@ export class EmployeeComponent implements OnInit {
   formControl() {
     this.employeeForm = this.fb.group({
       id: null,
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$')]],
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]],
       code: null,
       gender: ['', [Validators.required]],
-      contact: ['', [Validators.required]],
+      contact: ['', [Validators.required, Validators.pattern('0[0-9]{9}')]],
       address: ['', [Validators.required]],
-      nic: ['', [Validators.required]],
+      nic: ['', [Validators.required, Validators.pattern('^([0-9]{9}[x|X|v|V]|[0-9]{12})$')]],
       civilStatus: ['', [Validators.required]],
       dob: ['', [Validators.required]],
       designation: ['', [Validators.required]],
@@ -173,7 +173,7 @@ export class EmployeeComponent implements OnInit {
       this.getAllEmployees();
     }, err => {
       console.log(err);
-      this.showNotification('error', 'Error', '');
+      this.showNotification('error', 'Error', 'Cannot Delete Employee');
     });
   }
 }

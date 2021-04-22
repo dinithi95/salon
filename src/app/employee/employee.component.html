@@ -1,194 +1,337 @@
 <nz-card nzTitle="EMPLOYEE MANAGEMENT">
-
-
-  <p style="font-size:15px;color:rgba(0, 0, 0, 0.85);margin-bottom:16px;font-weight: 500;">
+  <p
+    style="
+      font-size: 15px;
+      color: rgba(0, 0, 0, 0.85);
+      margin-bottom: 16px;
+      font-weight: 500;
+    "
+  >
     Employee Registration Form
   </p>
 
-  <form nz-form [formGroup]="employeeForm" >
+  <form nz-form [formGroup]="employeeForm">
     <div nz-row>
       <div nz-col [nzMd]="12">
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
-        <input nz-input formControlName="code" id="code" value="{{code}}" readonly/>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name" >Full Name</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
-        <input nz-input formControlName="name" id="name" placeholder="Type your name here"/>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="birth" >Date of Birth</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
-        <nz-date-picker formControlName="dob" id="birth" placeholder="Date of birth here" nzFormat="yyyy-MM-dd" [nzDisabledDate]="disabledDate"></nz-date-picker>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="contact" >Contact Number</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
-        <input nz-input formControlName="contact" id="contact" placeholder="Type your contact number here"/>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address" >Permanent Address</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Number!">
-        <input nz-input formControlName="address" id="address" placeholder="Type your permanent address here"/>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nic">NIC</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid NIC!">
-        <input nz-input formControlName="nic" id="nic" placeholder="Type your NIC here"/>
-      </nz-form-control>
-    </nz-form-item>
-
-      </div>
-
-      <div nz-col [nzMd]="12">
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" >E-mail Address</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-        <input nz-input formControlName="email" id="email" placeholder="Type your email address here"/>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="civil" >Civil Status</nz-form-label>
-      <nz-radio-group formControlName="civilStatus" nzName="radiogroup">
-        <label nz-radio nzValue="Married">Married</label>
-        <label nz-radio nzValue="Unmarried">Unmarried</label>
-      </nz-radio-group>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="designation" >Designation</nz-form-label>
-      <div nz-col [nzSm]="14" [nzXs]="24">
-        <nz-select nzErrorTip="The input is not valid designation!" nzShowSearch nzAllowClear nzPlaceHolder="Select Designation Here" formControlName="designation" id="designation">
-          <nz-option nzLabel="Owner" nzValue="Owner"></nz-option>
-          <nz-option nzLabel="Cashier" nzValue="Cashier"></nz-option>
-          <nz-option nzLabel="Beautician" nzValue="Beautician"></nz-option>
-        </nz-select>
-      </div>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gender">Gender</nz-form-label>
-      <div nz-col [nzSm]="14" [nzXs]="24">
-        <nz-select nzErrorTip="The input is not valid Gender!" nzShowSearch nzAllowClear nzPlaceHolder="Select Gender" formControlName="gender" id="gender">
-          <nz-option nzLabel="Male" nzValue="Male"></nz-option>
-          <nz-option nzLabel="Female" nzValue="Female"></nz-option>
-          <nz-option nzLabel="Other" nzValue="Other"></nz-option>
-        </nz-select>
-      </div>
-    </nz-form-item>
-
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
-      <div nz-col [nzSm]="14" [nzXs]="24">
-        <nz-select nzErrorTip="The input is not valid Status!" nzShowSearch nzAllowClear nzPlaceHolder="Select Status" formControlName="status" id="status">
-          <nz-option nzLabel="Active" nzValue="Active"></nz-option>
-          <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
-        </nz-select>
-      </div>
-    </nz-form-item>
-
-
-    <div nz-row>
-      <div nz-col [nzOffset]="3" [nzSpan]="6" >
         <nz-form-item>
-          <nz-form-control>
-            <button nz-button (click)="resetForm()">Reset</button>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code"
+            >Code</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid Code!"
+          >
+            <input
+              nz-input
+              formControlName="code"
+              id="code"
+              value="{{ code }}"
+              readonly
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name"
+            >Full Name</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid Name!"
+          >
+            <input
+              nz-input
+              formControlName="name"
+              id="name"
+              placeholder="Type your name here"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="birth"
+            >Date of Birth</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid Date!"
+          >
+            <nz-date-picker
+              formControlName="dob"
+              id="birth"
+              placeholder="Date of birth here"
+              nzFormat="yyyy-MM-dd"
+              [nzDisabledDate]="disabledDate"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="contact"
+            >Contact Number</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid Number!"
+          >
+            <input
+              nz-input
+              formControlName="contact"
+              id="contact"
+              placeholder="Type your contact number here"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address"
+            >Permanent Address</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid Number!"
+          >
+            <input
+              nz-input
+              formControlName="address"
+              id="address"
+              placeholder="Type your permanent address here"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="nic"
+            >NIC</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid NIC!"
+          >
+            <input
+              nz-input
+              formControlName="nic"
+              id="nic"
+              placeholder="Type your NIC here"
+            />
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col [nzSpan]="6" >
+
+      <div nz-col [nzMd]="12">
         <nz-form-item>
-          <nz-form-control>
-            <button *ngIf="!update"
-                    nz-button
-                    nzType="primary"
-                    [disabled]="!employeeForm.valid"
-                    nz-popconfirm
-                    nzPopconfirmTitle="Are you sure?"
-                    (nzOnConfirm)="submitForm()"
-                    nzPopconfirmPlacement="top">Submit
-            </button>
-            <button *ngIf="update"
-                    nz-button
-                    nzType="primary"
-                    [disabled]="!employeeForm.valid"
-                    nz-popconfirm
-                    nzPopconfirmTitle="Are you sure?"
-                    (nzOnConfirm)="updateEmployee()"
-                    nzPopconfirmPlacement="top">Update
-            </button>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email"
+            >E-mail Address</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid E-mail!"
+          >
+            <input
+              nz-input
+              formControlName="email"
+              id="email"
+              placeholder="Type your email address here"
+            />
           </nz-form-control>
         </nz-form-item>
-      </div>
-    </div>
 
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="civil"
+            >Civil Status</nz-form-label
+          >
+          <nz-radio-group formControlName="civilStatus" nzName="radiogroup">
+            <label nz-radio nzValue="Married">Married</label>
+            <label nz-radio nzValue="Unmarried">Unmarried</label>
+          </nz-radio-group>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="designation"
+            >Designation</nz-form-label
+          >
+          <div nz-col [nzSm]="14" [nzXs]="24">
+            <nz-select
+              nzErrorTip="The input is not valid designation!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select Designation Here"
+              formControlName="designation"
+              id="designation"
+            >
+              <nz-option nzLabel="Owner" nzValue="Owner"></nz-option>
+              <nz-option nzLabel="Cashier" nzValue="Cashier"></nz-option>
+              <nz-option nzLabel="Beautician" nzValue="Beautician"></nz-option>
+            </nz-select>
+          </div>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="gender"
+            >Gender</nz-form-label
+          >
+          <div nz-col [nzSm]="14" [nzXs]="24">
+            <nz-select
+              nzErrorTip="The input is not valid Gender!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select Gender"
+              formControlName="gender"
+              id="gender"
+            >
+              <nz-option nzLabel="Male" nzValue="Male"></nz-option>
+              <nz-option nzLabel="Female" nzValue="Female"></nz-option>
+              <nz-option nzLabel="Other" nzValue="Other"></nz-option>
+            </nz-select>
+          </div>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status"
+            >Status</nz-form-label
+          >
+          <div nz-col [nzSm]="14" [nzXs]="24">
+            <nz-select
+              nzErrorTip="The input is not valid Status!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select Status"
+              formControlName="status"
+              id="status"
+            >
+              <nz-option nzLabel="Active" nzValue="Active"></nz-option>
+              <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
+            </nz-select>
+          </div>
+        </nz-form-item>
+
+        <div nz-row>
+          <div nz-col [nzOffset]="3" [nzSpan]="6">
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button (click)="resetForm()">Reset</button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="6">
+            <nz-form-item>
+              <nz-form-control>
+                <button
+                  *ngIf="!update"
+                  nz-button
+                  nzType="primary"
+                  [disabled]="!employeeForm.valid"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure?"
+                  (nzOnConfirm)="submitForm()"
+                  nzPopconfirmPlacement="top"
+                >
+                  Submit
+                </button>
+                <button
+                  *ngIf="update"
+                  nz-button
+                  nzType="primary"
+                  [disabled]="!employeeForm.valid"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure?"
+                  (nzOnConfirm)="updateEmployee()"
+                  nzPopconfirmPlacement="top"
+                >
+                  Update
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
       </div>
     </div>
   </form>
 </nz-card>
-<br>
-
+<br />
 
 <nz-card>
-  <nz-table #nzTable [nzData]="displayEmployees" nzSize="small" nzTableLayout="fixed">
+  <nz-table
+    #nzTable
+    [nzData]="displayEmployees"
+    nzSize="small"
+    nzTableLayout="fixed"
+  >
     <thead>
-    <tr>
-      <th>Code</th>
-      <th nzCustomFilter>
-        Name
-        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-          <i nz-icon nzType="search"></i>
-        </nz-filter-trigger>
-      </th>
-      <th>Email</th>
-      <th>NIC</th>
-      <th>Designation</th>
-      <th>Contact</th>
-      <th>Action</th>
-    </tr>
+      <tr>
+        <th>Code</th>
+        <th nzCustomFilter>
+          Name
+          <nz-filter-trigger
+            [(nzVisible)]="visible"
+            [nzActive]="searchValue.length > 0"
+            [nzDropdownMenu]="menu"
+          >
+            <i nz-icon nzType="search"></i>
+          </nz-filter-trigger>
+        </th>
+        <th>Email</th>
+        <th>NIC</th>
+        <th>Designation</th>
+        <th>Contact</th>
+        <th>Status</th>
+        <th style="width: 155px">Action</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of nzTable.data">
-      <td>{{ data.code }}</td>
-      <td>{{ data.name }}</td>
-      <td>{{ data.email }}</td>
-      <td>{{ data.nic }}</td>
-      <td>{{ data.designation }}</td>
-      <td>{{ data.contact }}</td>
-      <td nzRight="0px">
-        <a nz-button nzType="link" (click)="fillForm(data)">Edit</a> | <a nz-button nzType="link" nzDanger nz-popconfirm nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="delete(data.id)" >Delete</a>
-      </td>
-    </tr>
+      <tr *ngFor="let data of nzTable.data">
+        <td>{{ data.code }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.nic }}</td>
+        <td>{{ data.designation }}</td>
+        <td>{{ data.contact }}</td>
+        <td>{{ data.status }}</td>
+        <td nzRight="0px">
+          <a nz-button nzType="link" (click)="fillForm(data)">Edit</a>
+          <span *ngIf="data.status == 'Active'">
+            |
+            <a
+              nz-button
+              nzType="link"
+              nzDanger
+              nz-popconfirm
+              nzPopconfirmTitle="Are you sure?"
+              (nzOnConfirm)="delete(data.id)"
+              >Delete</a
+            ></span
+          >
+        </td>
+      </tr>
     </tbody>
   </nz-table>
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">
       <div class="search-box">
-        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
-        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+        <input
+          type="text"
+          nz-input
+          placeholder="Search name"
+          [(ngModel)]="searchValue"
+        />
+        <button
+          nz-button
+          nzSize="small"
+          nzType="primary"
+          (click)="search()"
+          class="search-button"
+        >
           Search
         </button>
         <button nz-button nzSize="small" (click)="resetSearch()">Reset</button>
       </div>
     </div>
   </nz-dropdown-menu>
-
-
-
-
+</nz-card>

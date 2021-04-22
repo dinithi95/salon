@@ -5,6 +5,7 @@ import { CategoryService } from '../services/category.service';
 import {HttpClient} from "@angular/common/http";
 import {NzNotificationService} from "ng-zorro-antd";
 
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -16,7 +17,6 @@ export class CategoryComponent implements OnInit {
   displayCategories = [...this.categories];
   searchValue = '';
   visible = false;
-  code = '';
   update = false;
 
   constructor(private fb: FormBuilder,
@@ -33,7 +33,6 @@ export class CategoryComponent implements OnInit {
   formControl() {
     this.categoryForm = this.fb.group({
       id: null,
-      code: ['', [Validators.required]],
       name: ['', [Validators.required]]
     });
   }
@@ -91,7 +90,6 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getAllCategories().subscribe(value => {
       this.categories = value;
       this.displayCategories = value;
-      this.generateCode();
     });
   }
 
@@ -100,7 +98,6 @@ export class CategoryComponent implements OnInit {
   resetForm(): void {
     this.categoryForm.reset();
     this.update = false;
-    this.generateCode();
   }
 
 
@@ -119,25 +116,12 @@ export class CategoryComponent implements OnInit {
 
 
   // Fill values to form for update employee(edit ekata click kalama exsisting data ena eka )
-  fillForm(employee: Category) {
+  fillForm(category: Category) {
     this.categoryForm.patchValue({//fill = patch
-      id: employee.id,
-      name: employee.name,
-      code: employee.code,
+      id: category.id,
+      name: category.name,
     });
     this.update = true;
-  }
-
-  // Auto generate next code(employee code)
-  generateCode() {
-    if (this.categories.length > 0) {
-      const lastCode = parseInt(this.categories[this.categories.length - 1].code, 10);
-      const nextCode = lastCode + 1;
-      this.code = nextCode.toString();
-    } else {
-      this.code = '1000';
-    }
-    this.categoryForm.patchValue({code: this.code});
   }
 
 

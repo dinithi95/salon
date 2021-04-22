@@ -14,4 +14,8 @@ export class CustomerService {
   getAllCustomers(): any {
     return this.http.get<Customer[]>('http://localhost:8000/api/customer');
   }
+
+  delete(id: any) {
+    return this.http.delete<Customer[]>(`http://localhost:8000/api/customer/${id}`);
+  }
 }

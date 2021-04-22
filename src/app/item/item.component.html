@@ -1,4 +1,4 @@
-<nz-card nzTitle="SUPPLER MANAGEMENT">
+<nz-card nzTitle="ITEM MANAGEMENT">
   <p
     style="
       font-size: 15px;
@@ -7,10 +7,10 @@
       font-weight: 500;
     "
   >
-    SUpplier Registration Form
+    Item Registration Form
   </p>
 
-  <form nz-form [formGroup]="supplierForm">
+  <form nz-form [formGroup]="itemForm">
     <div nz-row>
       <div nz-col [nzMd]="12">
         <nz-form-item>
@@ -20,7 +20,7 @@
           <nz-form-control
             [nzSm]="14"
             [nzXs]="24"
-            nzErrorTip="The input is not valid Code!"
+            nzErrorTip="The input is not valid code!"
           >
             <input
               nz-input
@@ -34,12 +34,12 @@
 
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name"
-            >Supplier Name</nz-form-label
+            >Item Name</nz-form-label
           >
           <nz-form-control
             [nzSm]="14"
             [nzXs]="24"
-            nzErrorTip="The input is not valid Name!"
+            nzErrorTip="The input is not valid item name!"
           >
             <input
               nz-input
@@ -51,112 +51,104 @@
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="company"
-            >Company Name</nz-form-label
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="brand"
+            >Brand</nz-form-label
           >
-          <nz-form-control
-            [nzSm]="14"
-            [nzXs]="24"
-            nzErrorTip="The input is not valid Name!"
-          >
-            <input
-              nz-input
-              formControlName="company"
-              id="company"
-              placeholder="Type company name here"
-            />
-          </nz-form-control>
+          <div nz-col [nzSm]="14" [nzXs]="24">
+            <nz-select
+              nzErrorTip="The input is not valid brand!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select Brand Here"
+              formControlName="brand"
+              id="brand"
+            >
+              <nz-option nzLabel="Bellose" nzValue="Bellose"></nz-option>
+              <nz-option nzLabel="Dove" nzValue="Dove"></nz-option>
+              <nz-option nzLabel="Loreal" nzValue="Loreal"></nz-option>
+              <nz-option nzLabel="Jovees" nzValue="Jovees"></nz-option>
+            </nz-select>
+          </div>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address"
-            >Company Address</nz-form-label
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price">
+            Price</nz-form-label
           >
-          <nz-form-control
-            [nzSm]="14"
-            [nzXs]="24"
-            nzErrorTip="The input is not valid Number!"
-          >
-            <input
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid price!">
+            <nz-input-number
               nz-input
-              formControlName="address"
-              id="address"
-              placeholder="Type your permanent address here"
-            />
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="contact"
-            >Contact Number</nz-form-label
-          >
-          <nz-form-control
-            [nzSm]="14"
-            [nzXs]="24"
-            nzErrorTip="The input is not valid Number!"
-          >
-            <input
-              nz-input
-              formControlName="contact"
-              id="contact"
-              placeholder="Type your contact number here"
-            />
+              formControlName="price"
+              id="price"
+              [nzStep]="0.01"
+              placeholder="Type Service Price Here"
+            ></nz-input-number>
+            <label> LKR</label>
           </nz-form-control>
         </nz-form-item>
       </div>
 
       <div nz-col [nzMd]="12">
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email"
-            >E-mail Address</nz-form-label
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="quantity"
+            >Quantity</nz-form-label
           >
           <nz-form-control
             [nzSm]="14"
             [nzXs]="24"
-            nzErrorTip="The input is not valid E-mail!"
+            nzErrorTip="The input is not valid quantity!"
           >
             <input
               nz-input
-              formControlName="email"
-              id="email"
-              placeholder="Type your email address here"
+              formControlName="quantity"
+              id="quantity"
+              placeholder="Type the quantity  here"
             />
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fax"
-            >Fax</nz-form-label
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type"
+            >Quantity Type</nz-form-label
           >
-          <nz-form-control
-            [nzSm]="14"
-            [nzXs]="24"
-            nzErrorTip="The input is not valid Fax!"
-          >
-            <input
-              nz-input
-              formControlName="fax"
-              id="fax"
-              placeholder="Type your fax here"
-            />
-          </nz-form-control>
+          <div nz-col [nzSm]="14" [nzXs]="24">
+            <nz-select
+              nzErrorTip="The input is not valid type!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select type here"
+              formControlName="type"
+              id="type"
+            >
+              <nz-option nzLabel="L" nzValue="L"></nz-option>
+              <nz-option nzLabel="ML" nzValue="ML"></nz-option>
+              <nz-option nzLabel="Bottle" nzValue="Bottle"></nz-option>
+            </nz-select>
+          </div>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="description"
-            >Description</nz-form-label
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="supplier"
+            >Supplier Name</nz-form-label
           >
           <nz-form-control
             [nzSm]="14"
             [nzXs]="24"
-            nzErrorTip="The input is not valid Fax!"
+            nzErrorTip="The input is not valid supplier!"
           >
-            <input
-              nz-input
-              formControlName="description"
-              id="description"
-              placeholder="Description here"
-            />
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select a supplier"
+              formControlName="supplier_id"
+              [compareWith]="compare"
+            >
+              <nz-option
+                *ngFor="let supplier of suppliers"
+                nzLabel="{{ supplier.name }}"
+                [nzValue]="supplier"
+              ></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
 
@@ -194,7 +186,7 @@
                   *ngIf="!update"
                   nz-button
                   nzType="primary"
-                  [disabled]="!supplierForm.valid"
+                  [disabled]="!itemForm.valid"
                   nz-popconfirm
                   nzPopconfirmTitle="Are you sure?"
                   (nzOnConfirm)="submitForm()"
@@ -206,10 +198,10 @@
                   *ngIf="update"
                   nz-button
                   nzType="primary"
-                  [disabled]="!supplierForm.valid"
+                  [disabled]="!itemForm.valid"
                   nz-popconfirm
                   nzPopconfirmTitle="Are you sure?"
-                  (nzOnConfirm)="updateSupplier()"
+                  (nzOnConfirm)="updateItem()"
                   nzPopconfirmPlacement="top"
                 >
                   Update
@@ -227,7 +219,7 @@
 <nz-card>
   <nz-table
     #nzTable
-    [nzData]="displaySuppliers"
+    [nzData]="displayItems"
     nzSize="small"
     nzTableLayout="fixed"
   >
@@ -235,7 +227,7 @@
       <tr>
         <th>Code</th>
         <th nzCustomFilter>
-          Supplier Name
+          Item Name
           <nz-filter-trigger
             [(nzVisible)]="visible"
             [nzActive]="searchValue.length > 0"
@@ -244,10 +236,11 @@
             <i nz-icon nzType="search"></i>
           </nz-filter-trigger>
         </th>
-        <th>Company Name</th>
-        <th>Email</th>
-        <th>Fax</th>
-        <th>Contact Number</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Quantity Type</th>
+        <th>Supplier Name</th>
         <th>Status</th>
         <th style="width: 155px">Action</th>
       </tr>
@@ -256,10 +249,11 @@
       <tr *ngFor="let data of nzTable.data">
         <td>{{ data.code }}</td>
         <td>{{ data.name }}</td>
-        <td>{{ data.company }}</td>
-        <td>{{ data.email }}</td>
-        <td>{{ data.fax }}</td>
-        <td>{{ data.contact }}</td>
+        <td>{{ data.brand }}</td>
+        <td>{{ data.price }}</td>
+        <td>{{ data.quantity }}</td>
+        <td>{{ data.type }}</td>
+        <td>{{ data.supplier.name }}</td>
         <td>{{ data.status }}</td>
         <td nzRight="0px">
           <a nz-button nzType="link" (click)="fillForm(data)">Edit</a>

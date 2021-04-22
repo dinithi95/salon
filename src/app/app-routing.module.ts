@@ -1,3 +1,4 @@
+import { ItemComponent } from './item/item.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {UserComponent} from './user/user.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
       {path: 'category', component: CategoryComponent},
       {path: 'subCategory', component: SubCategoryComponent},
       {path: 'service', component: ServiceComponent},
+      {path: 'item', component: ItemComponent},
     ],
   },
   {path: '**', component: NotFoundErrorComponent},
