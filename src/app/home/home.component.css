@@ -36,3 +36,58 @@ nz-footer {
   padding: 24px;
   min-height: 280px;
 }
+
+
+.img-card{
+  width:25%;
+}
+
+.service{
+  text-align: center;
+   padding: 10px;
+}
+
+.salon{
+  text-align: center;
+   padding: 0 10 0 10 ;
+   font-style: bold;
+   font-weight: 500;
+   font-size: 5em;
+   font-family: Cambria;
+   padding: 10;
+}
+
+.beauty{
+  text-align: center;
+  font-family:cursive;
+  font-size: 50px;
+
+}
+.call{
+ text-align: center;
+ font-size: 45px;
+   font-style: bold;
+}
+
+.number{
+ text-align: center;
+  font-size: 40px;
+    font-style: bold;
+}
+
+.img-card{
+  width: '20%';
+  text-align: 'center'
+}
+
+.about{
+  text-align: center;
+   padding: 10px;
+}
+
+.describe1{
+font-style: bold;
+font-family: Arial, Helvetica, sans-serif;
+text-align: center;
+font-size: 25px;
+}

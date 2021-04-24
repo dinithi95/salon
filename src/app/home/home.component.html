@@ -1,4 +1,5 @@
 <nz-layout>
+
   <nz-header>
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="horizontal">
@@ -7,13 +8,22 @@
       <li nz-menu-item>ABOUT US</li>
     </ul>
   </nz-header>
+
+  <div nz-row>
+
+    <div nz-col nzSpan="24">
+      <p class="salon">WELCOME TO SALON BASHIS</p>
+      <p class="beauty">"Beauty begins the moment you decide to be yourself "</p>
+      <p class="call">Call Us</p>
+      <p class="number">077 320 1598</p>
+    </div>
+  </div>
+
   <nz-content>
-    <!--<nz-breadcrumb>
-      <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-      <nz-breadcrumb-item>List</nz-breadcrumb-item>
-      <nz-breadcrumb-item>App</nz-breadcrumb-item>
-    </nz-breadcrumb>-->
+
+
     <div class="inner-content">
+
       <div nz-row>
         <div nz-col nzSpan="24">
           <nz-carousel nzAutoPlay>
@@ -25,9 +35,82 @@
       </div>
 
       <div nz-row>
-        <div nz-col nzSpan="24">jygjkhgkjhgjhgljhgljhgkujgujkhgbkjhgkjhgjkhgkjhgbjh</div>
+        <div nz-col nzSpan="24">
+
+          <H1 class="service">OUR SERVICES</H1>
+
+
+          <nz-card nzHoverable class="img-card" nzTitle="Hair Cutting" [nzCover]="coverTemplate1">
+          </nz-card>
+          <ng-template #coverTemplate1>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate2">
+          </nz-card>
+          <ng-template #coverTemplate2>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate3">
+          </nz-card>
+          <ng-template #coverTemplate3>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate4">
+          </nz-card>
+          <ng-template #coverTemplate4>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate5">
+          </nz-card>
+          <ng-template #coverTemplate5>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate6">
+          </nz-card>
+          <ng-template #coverTemplate6>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate7">
+          </nz-card>
+          <ng-template #coverTemplate7>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate8">
+          </nz-card>
+          <ng-template #coverTemplate8>
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+          </ng-template>
+
+
+
+        </div>
       </div>
     </div>
+
+    <div nz-row>
+
+      <div nz-col nzSpan="24">
+        <p class="about">ABOUT SALON BASHIS</p>
+        <p class="describe1">A contemporary salon brand offering fresh hairstyles and beauty treatments, with a rich
+          history that ties us to the
+          very roots of the hair and beauty industry in Sri Lanka.</p>
+        <p class="describe1">The Salon Bashis family is made up of highly skilled staff members who continue this unique
+          service outlook,
+          and we’re
+          proud to say that they actively shape the direction of our salons and the brand as a whole, with care,
+          passion, and
+          personal responsibility.</p>
+
+      </div>
+    </div>
+
   </nz-content>
-  <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+  <nz-footer>CONTACT WITH SALON BASHIS</nz-footer>
 </nz-layout>
