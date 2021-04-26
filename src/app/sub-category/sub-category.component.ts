@@ -133,12 +133,12 @@ export class SubCategoryComponent implements OnInit {
     this.subCategoryForm.patchValue({//fill = patch
       id: subcategory.id,
       name: subcategory.name,
-      category_id: subcategory.category_id
+      category_id: subcategory.category
     });
     this.update = true;
   }
 
-compares=(o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
+compares = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
 
 
 }

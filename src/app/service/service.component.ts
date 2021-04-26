@@ -138,7 +138,7 @@ export class ServiceComponent implements OnInit {
       id: service.id,
       name: service.name,
       code: service.code,
-      category: service.subcategory.category_id,
+      category: service.subcategory.category,
       subcategory_id: service.subcategory,
       price: service.price,
       duration: service.duration,

@@ -48,7 +48,7 @@ export class ItemComponent implements OnInit {
       price: ['', [Validators.required, Validators.pattern('[0-9]+.[0-9]{2}$')]],
       status: ['', [Validators.required]],
       supplier_id: ['', [Validators.required]],
-      
+
     });
   }
 
@@ -149,7 +149,7 @@ export class ItemComponent implements OnInit {
       type: item.type,
       quantity: item.quantity,
       status: item.status,
-      supplier_id: item.supplier_id,
+      supplier_id: item.supplier,
       brand: item.brand
     });
     this.update = true;

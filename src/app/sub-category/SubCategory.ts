@@ -3,6 +3,6 @@ import {Category} from "../category/Category";
 export interface Subcategory {
   id: string;
   name: string;
-  category_id: Category;
+  category: Category;
 
 }

@@ -17,8 +17,7 @@ export class ItemService {
   getItemBySupplier(id) {
     let supplier = new HttpParams();
     supplier = supplier.append('supplier', id);
-
-    return this.http.get<Item[]>('http://localhost:8000/api/itemBysupplier', {params: supplier});//filter wela ena nisa(item athule supplier)
+    return this.http.get<Item[]>('http://localhost:8000/api/itemBySupplier', {params: supplier});//filter wela ena nisa(item athule supplier)
   }
 
   delete(id: any) {

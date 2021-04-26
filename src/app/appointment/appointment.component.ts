@@ -29,13 +29,13 @@ export class AppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.formControl();
     this.services.map((service) => {
-      if (service.subcategory.category_id.name === 'Hair') {
+      if (service.subcategory.category.name === 'Hair') {
         this.hair.push(service);
       }
-      if (service.subcategory.category_id.name === 'Bridal') {
+      if (service.subcategory.category.name === 'Bridal') {
         this.bridal.push(service);
       }
-      if (service.subcategory.category_id.name === 'Beauty') {
+      if (service.subcategory.category.name === 'Beauty') {
         this.beauty.push(service);
       }
     });

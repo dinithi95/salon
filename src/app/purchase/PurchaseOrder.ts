@@ -1,14 +1,12 @@
 import {Supplier} from "../supplier/Supplier";
+import {Item} from "../item/Item";
 
-export interface Item {
+export interface PurchaseOrder {
   id: string;
   code: string;
-  name: string;
-  brand: string;
-  price: string;
-  quantity: string;
-  type: string;
-  supplier: Supplier;
+  date: string;
   status: string;
-
+  price: string;
+  supplier: Supplier;
+  items: Item[];
 }
