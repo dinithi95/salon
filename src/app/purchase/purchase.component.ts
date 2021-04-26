@@ -89,7 +89,7 @@ export class PurchaseComponent implements OnInit {
   // Auto generate next code(employee code)
   generateCode() {
     if (this.purchaseOrders.length > 0) {
-      const lastCode = parseInt(this.purchaseOrders[this.purchaseOrders.length - 1].code, 10);
+      const lastCode = parseInt(this.purchaseOrders[0].code, 10);
       const nextCode = lastCode + 1;
       this.code = nextCode.toString();
     } else {
@@ -120,6 +120,7 @@ export class PurchaseComponent implements OnInit {
 
   resetForm(): void {
     this.purchaseForm.reset();
+    this.generateCode();
   }
 
   // Create message
