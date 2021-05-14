@@ -28,6 +28,7 @@ export class PurchaseComponent implements OnInit {
   searchValue = '';
   isVisible = false;
   selectedPO: PurchaseOrder;
+  update = false;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
@@ -107,7 +108,7 @@ export class PurchaseComponent implements OnInit {
     this.http.post(`http://localhost:8000/api/purchaseOrder`, this.purchaseForm.value).subscribe(
       res => {
         this.resetForm();
-        this.showNotification('success', 'Service Details Saved Successfully', '');
+        this.showNotification('success', 'Purchase Order Details Saved Successfully', '');
         this.getAllPO();
       },
       err => {
@@ -115,7 +116,48 @@ export class PurchaseComponent implements OnInit {
           this.showNotification('error', err.error.errors[e], '');
         }
       });
+  }
 
+  updatePO(){
+    for (const key in this.purchaseForm.controls) {
+      this.purchaseForm.controls[key].markAsDirty();
+      this.purchaseForm.controls[key].updateValueAndValidity();
+    }
+
+    this.http.put(`http://localhost:8000/api/purchaseOrder`, this.purchaseForm.value).subscribe(
+      res => {
+        this.resetForm();
+        this.showNotification('success', 'Purchase Order Details Updated Successfully', '');
+        this.getAllPO();
+      },
+      err => {
+        for (const e in err.error.errors) {
+          this.showNotification('error', err.error.errors[e], '');
+        }
+      });
+  }
+
+  fillForm(po) {
+    this.resetForm();
+    this.purchaseForm.patchValue({
+      id: po.id,
+      code: po.code,
+      price: po.price,
+      date: po.date,
+      status: po.status,
+      supplier_id: po.supplier.id,
+    });
+    const control = this.purchaseForm.controls.items as FormArray;
+    control.clear();
+    po.items.map(item => {
+      control.push(
+        this.fb.group({
+          item_id: item.id,
+          quantity: item.pivot.quantity,
+        })
+      );
+    });
+    this.update = true;
   }
 
   resetForm(): void {
@@ -180,5 +222,7 @@ export class PurchaseComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
+
+  compare = (o1: any, o2: any) => o1 && o2 ? o1 === o2 : o1 === o2;
 
 }

@@ -8,19 +8,19 @@
 <!--    </nz-form-control>-->
 <!--  </nz-form-item>-->
   <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="name" >Name</nz-form-label>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="name" >Name</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
       <input nz-input formControlName="name" id="name"  nz-input placeholder="Type your name here"/>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="email" >E-mail</nz-form-label>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="email" >E-mail</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
       <input nz-input formControlName="email" id="email" nz-input placeholder="Type your email here"/>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Password!">
       <nz-input-group [nzSuffix]="suffixTemplate">
       <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password" id="password" nz-input placeholder="Type your password here"/>
@@ -31,19 +31,15 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="password_confirmation">Confirm Password</nz-form-label>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="password_confirmation">Confirm Password</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Password does not match!">
       <input type="password" formControlName="password_confirmation" id="password_confirmation" nz-input placeholder="Type again your password here"/>
     </nz-form-control>
   </nz-form-item>
 
 <nz-form-item>
-  <nz-form-label [nzSm]="2" [nzXs]="24" nzRequired nzFor="roles">Roles</nz-form-label>
-<!--  <div *ngFor="let role of roles; let i=index">-->
-<!--    <label nz-checkbox [(ngModel)]="checked" formControlName="roles" value="{{role.id}}"-->
-<!--           (change)="onCheckboxChange($event)">{{role.name}}</label>-->
-
-<!--  </div>-->
+  <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="roles">Roles</nz-form-label>
+  <nz-form-control [nzSm]="14" [nzXs]="24" >
   <nz-select nzPlaceHolder="Select roles"
              nzMode="multiple"
              nzAllowClear
@@ -51,6 +47,7 @@
              nzServerSearch formControlName="roles">
     <nz-option *ngFor="let option of roles" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
   </nz-select>
+  </nz-form-control>
 </nz-form-item>
 
   <div nz-row>

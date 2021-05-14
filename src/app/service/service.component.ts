@@ -61,7 +61,7 @@ export class ServiceComponent implements OnInit {
   }
 
   getSubcategoryByCategory(category) {
-    this.subcategoryService.getSubcategoryByCategory(category.id).subscribe(value => {
+    this.subcategoryService.getSubcategoryByCategory(category).subscribe(value => {
       this.subcategories = value;
     });
   }
@@ -177,8 +177,8 @@ export class ServiceComponent implements OnInit {
   }
 
 // Compare select
-  compares = (o1: any, o2: any) => o1 && o2 ? o1 === o2.id : o1 === o2;
-  compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2; //obj
+  compare = (o1: any, o2: any) => o1 && o2 ? o1 === o2 : o1 === o2;
+  // compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
   // compareString = (o1: any, o2: any) => o1 === o2; //string
 
   delete(id: any) {

@@ -1,10 +1,12 @@
 <nz-card nzTitle="ITEM MANAGEMENT">
-  <p style="
+  <p
+    style="
       font-size: 15px;
       color: rgba(0, 0, 0, 0.85);
       margin-bottom: 16px;
       font-weight: 500;
-    ">
+    "
+  >
     Item Registration Form
   </p>
 
@@ -12,24 +14,55 @@
     <div nz-row>
       <div nz-col [nzMd]="12">
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid code!">
-            <input nz-input formControlName="code" id="code" value="{{ code }}" readonly />
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code"
+            >Code</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid code!"
+          >
+            <input
+              nz-input
+              formControlName="code"
+              id="code"
+              value="{{ code }}"
+              readonly
+            />
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Item Name</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid item name!">
-            <input nz-input formControlName="name" id="name" placeholder="Type your name here" />
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name"
+            >Item Name</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid item name!"
+          >
+            <input
+              nz-input
+              formControlName="name"
+              id="name"
+              placeholder="Type your name here"
+            />
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="brand">Brand</nz-form-label>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="brand"
+            >Brand</nz-form-label
+          >
           <div nz-col [nzSm]="14" [nzXs]="24">
-            <nz-select nzErrorTip="The input is not valid brand!" nzShowSearch nzAllowClear
-              nzPlaceHolder="Select Brand Here" formControlName="brand" id="brand">
+            <nz-select
+              nzErrorTip="The input is not valid brand!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select Brand Here"
+              formControlName="brand"
+              id="brand"
+            >
               <nz-option nzLabel="Bellose" nzValue="Bellose"></nz-option>
               <nz-option nzLabel="Dove" nzValue="Dove"></nz-option>
               <nz-option nzLabel="Loreal" nzValue="Loreal"></nz-option>
@@ -40,10 +73,16 @@
 
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="price">
-            Price</nz-form-label>
+            Price</nz-form-label
+          >
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Invalid price!">
-            <nz-input-number nz-input formControlName="price" id="price" [nzStep]="0.01"
-              placeholder="Type Service Price Here"></nz-input-number>
+            <nz-input-number
+              nz-input
+              formControlName="price"
+              id="price"
+              [nzStep]="0.01"
+              placeholder="Type Service Price Here"
+            ></nz-input-number>
             <label> LKR</label>
           </nz-form-control>
         </nz-form-item>
@@ -51,39 +90,81 @@
 
       <div nz-col [nzMd]="12">
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="quantity">Quantity</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid quantity!">
-            <input nz-input formControlName="quantity" id="quantity" placeholder="Type the quantity  here" />
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="quantity"
+            >Quantity</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid quantity!"
+          >
+            <input
+              nz-input
+              formControlName="quantity"
+              id="quantity"
+              placeholder="Type the quantity  here"
+            />
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">Quantity Type</nz-form-label>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type"
+            >Quantity Type</nz-form-label
+          >
           <div nz-col [nzSm]="14" [nzXs]="24">
-            <nz-select nzErrorTip="The input is not valid type!" nzShowSearch nzAllowClear
-              nzPlaceHolder="Select type here" formControlName="type" id="type">
+            <nz-select
+              nzErrorTip="The input is not valid type!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select type here"
+              formControlName="type"
+              id="type"
+            >
               <nz-option nzLabel="L" nzValue="L"></nz-option>
               <nz-option nzLabel="ML" nzValue="ML"></nz-option>
+              <nz-option nzLabel="Bottle" nzValue="Bottle"></nz-option>
             </nz-select>
           </div>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="supplier">Supplier Name</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid supplier!">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a supplier" formControlName="supplier_id"
-              [compareWith]="compare">
-              <nz-option *ngFor="let supplier of suppliers" nzLabel="{{ supplier.name }}" [nzValue]="supplier">
-              </nz-option>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="supplier"
+            >Supplier Name</nz-form-label
+          >
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="The input is not valid supplier!"
+          >
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select a supplier"
+              formControlName="supplier_id"
+              [compareWith]="compare"
+            >
+              <nz-option
+                *ngFor="let supplier of suppliers"
+                nzLabel="{{ supplier.name }}"
+                [nzValue]="supplier"
+              ></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status"
+            >Status</nz-form-label
+          >
           <div nz-col [nzSm]="14" [nzXs]="24">
-            <nz-select nzErrorTip="The input is not valid Status!" nzShowSearch nzAllowClear
-              nzPlaceHolder="Select Status" formControlName="status" id="status">
+            <nz-select
+              nzErrorTip="The input is not valid Status!"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Select Status"
+              formControlName="status"
+              id="status"
+            >
               <nz-option nzLabel="Active" nzValue="Active"></nz-option>
               <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
             </nz-select>
@@ -101,12 +182,28 @@
           <div nz-col [nzSpan]="6">
             <nz-form-item>
               <nz-form-control>
-                <button *ngIf="!update" nz-button nzType="primary" [disabled]="!itemForm.valid" nz-popconfirm
-                  nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="submitForm()" nzPopconfirmPlacement="top">
+                <button
+                  *ngIf="!update"
+                  nz-button
+                  nzType="primary"
+                  [disabled]="!itemForm.valid"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure?"
+                  (nzOnConfirm)="submitForm()"
+                  nzPopconfirmPlacement="top"
+                >
                   Submit
                 </button>
-                <button *ngIf="update" nz-button nzType="primary" [disabled]="!itemForm.valid" nz-popconfirm
-                  nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="updateItem()" nzPopconfirmPlacement="top">
+                <button
+                  *ngIf="update"
+                  nz-button
+                  nzType="primary"
+                  [disabled]="!itemForm.valid"
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure?"
+                  (nzOnConfirm)="updateItem()"
+                  nzPopconfirmPlacement="top"
+                >
                   Update
                 </button>
               </nz-form-control>
@@ -120,13 +217,22 @@
 <br />
 
 <nz-card>
-  <nz-table #nzTable [nzData]="displayItems" nzSize="small" nzTableLayout="fixed">
+  <nz-table
+    #nzTable
+    [nzData]="displayItems"
+    nzSize="small"
+    nzTableLayout="fixed"
+  >
     <thead>
       <tr>
         <th>Code</th>
         <th nzCustomFilter>
           Item Name
-          <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+          <nz-filter-trigger
+            [(nzVisible)]="visible"
+            [nzActive]="searchValue.length > 0"
+            [nzDropdownMenu]="menu"
+          >
             <i nz-icon nzType="search"></i>
           </nz-filter-trigger>
         </th>
@@ -153,8 +259,15 @@
           <a nz-button nzType="link" (click)="fillForm(data)">Edit</a>
           <span *ngIf="data.status == 'Active'">
             |
-            <a nz-button nzType="link" nzDanger nz-popconfirm nzPopconfirmTitle="Are you sure?"
-              (nzOnConfirm)="delete(data.id)">Delete</a></span>
+            <a
+              nz-button
+              nzType="link"
+              nzDanger
+              nz-popconfirm
+              nzPopconfirmTitle="Are you sure?"
+              (nzOnConfirm)="delete(data.id)">
+              Delete</a>
+          </span>
         </td>
       </tr>
     </tbody>
@@ -162,8 +275,19 @@
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">
       <div class="search-box">
-        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
-        <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+        <input
+          type="text"
+          nz-input
+          placeholder="Search name"
+          [(ngModel)]="searchValue"
+        />
+        <button
+          nz-button
+          nzSize="small"
+          nzType="primary"
+          (click)="search()"
+          class="search-button"
+        >
           Search
         </button>
         <button nz-button nzSize="small" (click)="resetSearch()">Reset</button>
