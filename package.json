@@ -19,8 +19,9 @@
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
-    "ng-zorro-antd": "^9.3.0",
     "date-fns": "^2.16.1",
+    "luxon": "^1.26.0",
+    "ng-zorro-antd": "^9.3.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

@@ -34,6 +34,7 @@ import { HomeComponent } from './home/home.component';
 import { StockComponent } from './stock/stock.component';
 import { GrnComponent } from './grn/grn.component';
 import { ItemComponent } from './item/item.component';
+import { ApproveAppointmentComponent } from './approve-appointment/approve-appointment.component';
 
 
 registerLocaleData(en);
@@ -59,7 +60,8 @@ registerLocaleData(en);
     HomeComponent,
     StockComponent,
     GrnComponent,
-    ItemComponent
+    ItemComponent,
+    ApproveAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     NgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [{provide: NZ_I18N, useValue: en_US},
     {

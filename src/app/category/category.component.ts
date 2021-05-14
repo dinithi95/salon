@@ -38,7 +38,8 @@ export class CategoryComponent implements OnInit {
   }
 
 //Insert category
-  submitForm() { for (const key in this.categoryForm.controls) {
+  submitForm() {
+    for (const key in this.categoryForm.controls) {
       this.categoryForm.controls[key].markAsDirty();
       this.categoryForm.controls[key].updateValueAndValidity();
     }
@@ -125,6 +126,6 @@ export class CategoryComponent implements OnInit {
   }
 
 
- 
+
 }
 

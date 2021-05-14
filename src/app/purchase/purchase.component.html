@@ -6,7 +6,7 @@
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Code</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
-            <input nz-input formControlName="code" id="code" readonly placeholder="Type your code here" />
+            <input nz-input formControlName="code" id="code" readonly placeholder="Type your code here"/>
           </nz-form-control>
         </nz-form-item>
 
@@ -14,8 +14,8 @@
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="supplier">Supplier</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
             <nz-select nzErrorTip="The input is not valid Supplier!" nzShowSearch nzAllowClear
-              nzPlaceHolder="Select Supplier" formControlName="supplier_id" id="supplier"
-              (ngModelChange)="getItemsBySupplier($event)">
+                       nzPlaceHolder="Select Supplier" formControlName="supplier_id" id="supplier"
+                       (ngModelChange)="getItemsBySupplier($event)" [compareWith]="compare">
               <nz-option *ngFor="let supplier of suppliers" nzLabel="{{supplier.name}}" [nzValue]="supplier.id">
               </nz-option>
             </nz-select>
@@ -36,7 +36,7 @@
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
           <div nz-col [nzSm]="14" [nzXs]="24">
             <nz-select nzErrorTip="The input is not valid Status!" nzShowSearch nzAllowClear
-              nzPlaceHolder="Select Status" formControlName="status" id="status">
+                       nzPlaceHolder="Select Status" formControlName="status" id="status">
               <nz-option nzLabel="Active" nzValue="Active"></nz-option>
               <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
             </nz-select>
@@ -48,48 +48,48 @@
     <!-- Nested form===========================================================   -->
 
     <button nz-button (click)="addItem()">Add Item</button>
+    <br>
 
     <div nz-row>
       <div nz-col [nzMd]="24">
 
         <!--        <div formArrayName="items">-->
-        <nz-table #basicTable>
+        <nz-table #basicTable nzSize="small">
           <thead>
-            <tr>
-              <th>Item</th>
-              <th>Quantity Type</th>
-              <th>Quantity</th>
-              <th>Delete</th>
-            </tr>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+          </tr>
           </thead>
           <tbody formArrayName="items">
-            <tr *ngFor="let item of itemsArray.controls; let i=index" [formGroupName]="i">
-              <td>
-                <nz-form-item>
-                  <nz-select nzErrorTip="The input is not valid Item!" nzShowSearch nzAllowClear
-                    nzPlaceHolder="Select Item" formControlName="item_id" id="item">
-                    <nz-option *ngFor="let item of items" nzLabel="{{item.name }} - {{ item.type}}" [nzValue]="item.id">
-                    </nz-option>
-                  </nz-select>
-                </nz-form-item>
-              </td>
-              <td>
-
-              </td>
-              <td>
-                <nz-form-item>
-                  <input nz-input formControlName="quantity" id="quantity" placeholder="Type your quantity here"
-                    (change)="calculateTotal()" />
-                </nz-form-item>
-              </td>
-              <td>
-                <button nz-button (click)="removeItem(i)"> -</button>
-              </td>
-            </tr>
+          <tr *ngFor="let item of itemsArray.controls; let i=index" [formGroupName]="i">
+            <td>
+              <nz-form-item>
+                <nz-select nzErrorTip="The input is not valid Item!" nzShowSearch nzAllowClear
+                           nzPlaceHolder="Select Item" formControlName="item_id" id="item" [compareWith]="compare">
+                  <nz-option *ngFor="let item of items" nzLabel="{{item.name }} - {{ item.type}}" [nzValue]="item.id">
+                  </nz-option>
+                </nz-select>
+              </nz-form-item>
+            </td>
+            <td>
+              <nz-form-item>
+                <input nz-input formControlName="quantity" id="quantity" placeholder="Type your quantity here"
+                       (change)="calculateTotal()"/>
+              </nz-form-item>
+            </td>
+            <td>
+              <nz-form-item>
+                <button nz-button (click)="removeItem(i)" nzDanger> -</button>
+              </nz-form-item>
+            </td>
+          </tr>
           </tbody>
         </nz-table>
       </div>
     </div>
+    <br>
 
     <!-- ===========================================================   -->
     <div nz-row>
@@ -97,7 +97,7 @@
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="code">Total Price</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Code!">
-            <input nz-input formControlName="price" readonly id="price" placeholder="Type your code here" />
+            <input nz-input formControlName="price" readonly id="price" placeholder="Type your code here"/>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -105,13 +105,40 @@
 
 
     <div nz-row>
-      <div nz-col [nzOffset]="13" [nzSpan]="6">
+      <div nz-col [nzOffset]="18" [nzSpan]="3">
         <nz-form-item>
           <nz-form-control>
             <button nz-button (click)="resetForm()">Reset</button>
-            <button nz-button nzType="primary" [disabled]="!purchaseForm.valid" nz-popconfirm
-              nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="submitForm()" nzPopconfirmPlacement="top">Submit
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="3">
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              *ngIf="!update"
+              nz-button
+              nzType="primary"
+              [disabled]="!purchaseForm.valid"
+              nz-popconfirm
+              nzPopconfirmTitle="Are you sure?"
+              (nzOnConfirm)="submitForm()"
+              nzPopconfirmPlacement="top"
+            >
+              Submit
             </button>
+                        <button
+                          *ngIf="update"
+                          nz-button
+                          nzType="primary"
+                          [disabled]="!purchaseForm.valid"
+                          nz-popconfirm
+                          nzPopconfirmTitle="Are you sure?"
+                          (nzOnConfirm)="updatePO()"
+                          nzPopconfirmPlacement="top"
+                        >
+                          Update
+                        </button>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -123,35 +150,38 @@
 <nz-card>
   <nz-table #nzTable [nzData]="displayPurchaseOrders" nzSize="small" nzTableLayout="fixed">
     <thead>
-      <tr>
-        <th nzCustomFilter>
-          Code
-          <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-            <i nz-icon nzType="search"></i>
-          </nz-filter-trigger>
-        </th>
-        <th>Date</th>
-        <th>Supplier</th>
-        <th>Price</th>
-        <th>Status</th>
-        <th style="width: 155px">Action</th>
-      </tr>
+    <tr>
+      <th nzCustomFilter>
+        Code
+        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+          <i nz-icon nzType="search"></i>
+        </nz-filter-trigger>
+      </th>
+      <th>Date</th>
+      <th>Supplier</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th style="width: 155px">Action</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of nzTable.data">
-        <td>{{ data.code }}</td>
-        <td>{{ data.date }}</td>
-        <td>{{ data.supplier.name }}</td>
-        <td>{{ data.price }}</td>
-        <td>{{ data.status }}</td>
-        <td><a nz-button nzType="link" (click)="showModal(data)">View</a></td>
-      </tr>
+    <tr *ngFor="let data of nzTable.data">
+      <td>{{ data.code }}</td>
+      <td>{{ data.date }}</td>
+      <td>{{ data.supplier.name }}</td>
+      <td>{{ data.price }}</td>
+      <td>{{ data.status }}</td>
+      <td>
+        <a nz-button nzType="link" (click)="showModal(data)">View</a>
+        <span *ngIf="data.status == 'Active'"> | <a nz-button nzType="link" (click)="fillForm(data)">Edit</a> </span>
+      </td>
+    </tr>
     </tbody>
   </nz-table>
   <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">
       <div class="search-box">
-        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+        <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue"/>
         <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
           Search
         </button>
@@ -170,18 +200,18 @@
 
     <nz-table #nzTable1 [nzData]="selectedPO" nzSize="small" nzTableLayout="fixed">
       <thead>
-        <tr>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Quantity</th>
-        </tr>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Quantity</th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of selectedPO?.items">
-          <td>{{data.code}}</td>
-          <td>{{data.name}}</td>
-          <td>{{data.pivot.quantity}}</td>
-        </tr>
+      <tr *ngFor="let data of selectedPO?.items">
+        <td>{{data.code}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.pivot.quantity}}</td>
+      </tr>
       </tbody>
     </nz-table>
   </nz-modal>

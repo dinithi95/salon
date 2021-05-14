@@ -48,14 +48,36 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address">Permanent Address</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address">Address</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Address!">
           <input nz-input formControlName="address" id="address" input nz-input
                  placeholder="Type your  permanent address here"/>
         </nz-form-control>
       </nz-form-item>
 
-    </div>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Password!">
+            <nz-input-group [nzSuffix]="suffixTemplate">
+              <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password" id="password" nz-input placeholder="Type your password here"/>
+              <ng-template #suffixTemplate>
+                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="password_confirmation">Repeat Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Password does not match!">
+            <input type="password" formControlName="password_confirmation" id="password_confirmation" nz-input placeholder="Type again your password here"/>
+          </nz-form-control>
+        </nz-form-item>
+
+        <input type="password" hidden formControlName="roles" id="roles" nz-input/>
+
+
+      </div>
 
 
     <div nz-col [nzMd]="12">
@@ -105,7 +127,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
         <div nz-col [nzSm]="14" [nzXs]="24">
-          <nz-select nzErrorTip="The input is not valid Status!" nzShowSearch nzAllowClear nzPlaceHolder="Select Status"
+          <nz-select nzErrorTip="The input is not valid Status!" [nzDisabled]="!update" nzShowSearch nzAllowClear nzPlaceHolder="Select Status"
             formControlName="status" id="status">
             <nz-option nzLabel="Active" nzValue="Active"></nz-option>
             <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
@@ -138,9 +160,9 @@
                     nzPopconfirmPlacement="top">Submit
             </button>
 
-            <button *ngIf="update" 
-                    nz-button nzType="primary" 
-                    [disabled]="!customerForm.valid" 
+            <button *ngIf="update"
+                    nz-button nzType="primary"
+                    [disabled]="!customerForm.valid"
                     nz-popconfirm
                     nzPopconfirmTitle="Are you sure?" (nzOnConfirm)="updateCustomer()" nzPopconfirmPlacement="top">Update
             </button>
@@ -156,10 +178,10 @@
       </div>
 
     </div>
-    
+
   </form>
   <br>
-  <br> 
+  <br>
 </nz-card>
 <br>
 

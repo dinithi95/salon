@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from './Customer';
 import { CustomerService } from '../services/customer.service';
@@ -13,6 +13,7 @@ import { differenceInCalendarDays, differenceInCalendarYears } from 'date-fns';
 })
 export class CustomerComponent implements OnInit {
   customerForm: FormGroup;
+  passwordVisible = false;
   customers: Customer[] = [];
   radioValue = 'Married';
   displayCustomers = [...this.customers];
@@ -38,18 +39,21 @@ export class CustomerComponent implements OnInit {
     this.customerForm = this.fb.group({
       id: null,
       code: ['', [Validators.required]],
-      name: [ '', [Validators.required,Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),],],
+      name: [ '', [Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),],],
       birth: ['', [Validators.required]],
       nic: ['', [Validators.required, Validators.pattern('^([0-9]{9}[x|X|v|V]|[0-9]{12})$'), ],],
       address: ['', [Validators.required]],
       postal: ['', [Validators.required, Validators.pattern('[0-9]{5}')]],
-      town: [ '', [ Validators.required,Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'), ],],
+      town: [ '', [ Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'), ],],
       district: [ '', [Validators.required,  Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),  ],  ],
       land: [   '', [Validators.required, Validators.pattern('0[1,2,3,4,5,6,8,9][0-9]{8}')],   ],
       mobile: ['', [ Validators.required, Validators.pattern('07[0,1,2,4,5,6,7,8][0-9]{7}'), ],   ],
-      email: ['', [Validators.required,Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),   ],  ],
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),   ],  ],
       civilStatus: ['', [Validators.required]],
-      status: ['', [Validators.required]],
+      status: ['Active', [Validators.required]],
+      password: ['', [Validators.required]],
+      password_confirmation: ['', [Validators.required, this.confirmationValidator]],
+      roles: [['3'], [Validators.required]],
     });
   }
 
@@ -64,9 +68,19 @@ export class CustomerComponent implements OnInit {
       .post(`http://localhost:8000/api/customer`, this.customerForm.value)
       .subscribe(
         (res) => {
-          this.resetForm();
-          this.showNotification( 'success', 'Customer Details Updated Successfully', '' );
-          this.getAllCustomers();
+          if (res){
+            this.http.put(`http://localhost:8000/api/user`, {
+              name: this.customerForm.controls.name.value,
+              email: this.customerForm.controls.email.value,
+              password: this.customerForm.controls.password.value,
+              password_confirmation: this.customerForm.controls.password_confirmation.value,
+              roles: ['3']
+            }).subscribe(value => {
+              this.resetForm();
+              this.showNotification( 'success', 'Customer Details Updated Successfully', '' );
+              this.getAllCustomers();
+            });
+          }
         },
         (err) => {
           for (const e in err.error.errors) {
@@ -124,6 +138,7 @@ export class CustomerComponent implements OnInit {
   resetForm(): void {
     this.customerForm.reset();
     this.update = false;
+    this.formControl();
     this.generateCode();
   }
 
@@ -202,5 +217,14 @@ export class CustomerComponent implements OnInit {
         this.showNotification('error', 'Error', 'Cannot Delete Employee');
       }
     );
+  }
+
+  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return {required: true};
+    } else if (control.value !== this.customerForm.controls.password.value) {
+      return {confirm: true, error: true};
+    }
+    return {};
   }
 }

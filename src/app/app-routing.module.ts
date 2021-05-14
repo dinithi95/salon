@@ -19,6 +19,7 @@ import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./auth.guard";
 import {NotFoundErrorComponent} from "./error/not-found-error/not-found-error.component";
 import {HomeComponent} from "./home/home.component";
+import {ApproveAppointmentComponent} from "./approve-appointment/approve-appointment.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -39,6 +40,8 @@ const routes: Routes = [
       {path: 'subCategory', component: SubCategoryComponent},
       {path: 'service', component: ServiceComponent},
       {path: 'item', component: ItemComponent},
+      {path: 'user', component: UserComponent},
+      {path: 'approve-appointment', component: ApproveAppointmentComponent},
     ],
   },
   {path: '**', component: NotFoundErrorComponent},

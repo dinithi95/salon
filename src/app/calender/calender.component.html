@@ -1,1 +1,52 @@
-<nz-calendar (nzSelectChange)="selectChange($event)"></nz-calendar>
+<div nz-row nzJustify="center">
+  <div nz-col [nzMd]="10">
+    <div style="width: 300px; border: 1px solid #d9d9d9; border-radius: 4px;">
+      <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)"
+                   (nzPanelChange)="onPanelChange($event)"></nz-calendar>
+    </div>
+  </div>
+</div>
+
+<div nz-row>
+  <div nz-col [nzMd]="24">
+
+    <nz-list nzBordered nzHeader="Selected Services">
+      <nz-list-item *ngFor="let appointment of displayActiveAppointments">
+        <span>{{appointment.code}}</span>
+        <span>{{appointment.name}}</span>
+        <span>{{appointment.date.slice(0,10)}}</span>
+        <span>{{appointment.start}}</span>
+        <span>{{appointment.end}}</span>
+        <span><button nz-button nzType="default" (click)="showModal()">View</button>
+
+          <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" [nzFooter]="modalFooter" (nzOnCancel)="closeModal()">
+        <ng-template #modalFooter>
+          <button nz-button nzType="default" (click)="closeModal()">Cancel</button>
+        </ng-template>
+        <label>Appointment Code : </label><span>{{appointment.code}}</span><br>
+        <label>Customer Name : </label><span>{{appointment.name}}</span><br>
+        <label>Customer NIC : </label><span>{{appointment.nic}}</span><br>
+        <label>Customer Email : </label><span>{{appointment.email}}</span><br>
+        <label>Customer Mobile : </label><span>{{appointment.mobile}}</span><br>
+        <label>Date : </label><span>{{appointment.date.slice(0,10)}}</span><br>
+        <label>Start Time : </label><span>{{appointment.start}}</span><br>
+        <label>End Time : </label><span>{{appointment.end}}</span><br><br>
+
+        <nz-list nzBordered nzHeader="Selected Services">
+          <nz-list-item *ngFor="let service of appointment.services">
+            <span>{{service.name}}</span>
+            <span>{{service.duration}}</span>
+            <span>{{service.price}}</span>
+          </nz-list-item>
+          <nz-list-item>
+            <span><h4>Total</h4></span>
+            <span><h4>{{appointment.cost}}</h4></span>
+          </nz-list-item>
+        </nz-list>
+      </nz-modal></span>
+      </nz-list-item>
+    </nz-list>
+
+  </div>
+</div>
+
