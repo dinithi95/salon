@@ -1,3 +1,4 @@
+import { PurchaseOrder } from './../purchase/PurchaseOrder';
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subcategory} from "../sub-category/SubCategory";
@@ -7,17 +8,17 @@ import {ItemService} from "../services/item.service";
 import {Item} from "../item/Item";
 import {SupplierService} from "../services/supplier.service";
 import {Supplier} from "../supplier/Supplier";
-import {PurchaseOrder} from "./PurchaseOrder";
 import {PurchaseService} from "../services/purchase.service";
+import {GrnService} from "../services/grn.service";
 import {Service} from "../service/Service";
 
 @Component({
-  selector: 'app-purchase',
-  templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.css']
+  selector: 'app-grn',
+  templateUrl: './grn.component.html',
+  styleUrls: ['./grn.component.css']
 })
-export class PurchaseComponent implements OnInit {
-  purchaseForm: FormGroup;
+export class GrnComponent implements OnInit {
+  grnForm: FormGroup;
   items: Item[] = [];
   suppliers: Supplier[] = [];
   purchaseOrders: PurchaseOrder[] = [];
@@ -34,6 +35,7 @@ export class PurchaseComponent implements OnInit {
               private itemService: ItemService,
               private supplierService: SupplierService,
               private purchaseService: PurchaseService,
+              private grnService: GrnService,
               private notification: NzNotificationService) {
   }
 
@@ -44,7 +46,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   formControl() {
-    this.purchaseForm = this.fb.group({
+    this.grnForm = this.fb.group({
       id: null,
       code: ['', [Validators.required]],
       supplier_id: ['', [Validators.required]],
@@ -77,13 +79,13 @@ export class PurchaseComponent implements OnInit {
 
   calculateTotal(){
     this.totalPrice = 0;
-    const lines = this.purchaseForm.get('items').value;
+    const lines = this.grnForm.get('items').value;
     for (let line of lines) {
       let item = this.items.find(i => i.id === line.item_id);
       let lineTotal = parseFloat(item.price) * parseInt(line.quantity, 10);
       this.totalPrice = this.totalPrice + lineTotal;
     }
-    this.purchaseForm.patchValue({price: this.totalPrice});
+    this.grnForm.patchValue({price: this.totalPrice});
   }
 
   // Auto generate next code(employee code)
@@ -95,16 +97,16 @@ export class PurchaseComponent implements OnInit {
     } else {
       this.code = '1000';
     }
-    this.purchaseForm.patchValue({code: this.code});
+    this.grnForm.patchValue({code: this.code});
   }
 
   submitForm() {
-    for (const key in this.purchaseForm.controls) {
-      this.purchaseForm.controls[key].markAsDirty();
-      this.purchaseForm.controls[key].updateValueAndValidity();
+    for (const key in this.grnForm.controls) {
+      this.grnForm.controls[key].markAsDirty();
+      this.grnForm.controls[key].updateValueAndValidity();
     }
 
-    this.http.post(`http://localhost:8000/api/purchaseOrder`, this.purchaseForm.value).subscribe(
+    this.http.post(`http://localhost:8000/api/grn`, this.grnForm.value).subscribe(
       res => {
         this.resetForm();
         this.showNotification('success', 'Service Details Saved Successfully', '');
@@ -119,7 +121,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.purchaseForm.reset();
+    this.grnForm.reset();
     this.generateCode();
   }
 
@@ -130,7 +132,7 @@ export class PurchaseComponent implements OnInit {
 
 
   addItem() {
-    const control = this.purchaseForm.controls.items as FormArray;
+    const control = this.grnForm.controls.items as FormArray;
     control.push(
       this.fb.group({
         item_id: ['', ],
@@ -147,7 +149,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   get itemsArray(): FormArray {
-    return this.purchaseForm.get('items') as FormArray;
+    return this.grnForm.get('items') as FormArray;
   }
 
   removeItem(index: number): void {

@@ -23,11 +23,11 @@
 
     <div class="inner-content">
 
-      <div nz-row >
+      <div nz-row>
         <div nz-col nzSpan="24">
           <nz-carousel nzAutoPlay>
             <div nz-carousel-content *ngFor="let image of images">
-              <img [src]="image" />
+              <img [src]="image" class="carousel-img" />
             </div>
           </nz-carousel>
         </div>
@@ -39,7 +39,7 @@
           <H1 class="section-title">OUR SERVICES</H1>
 
 
-          <nz-card nzHoverable class="img-card"  [nzCover]="coverTemplate1">
+          <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate1">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate1>
@@ -101,22 +101,23 @@
       </div>
       <br><br>
 
-    <div nz-row id="about">
+      <div nz-row id="about">
 
-      <div nz-col nzSpan="24">
-        <h1 class="section-title">ABOUT SALON BASHIS</h1>
-        <p class="describe1">A contemporary salon brand offering fresh hairstyles and beauty treatments, with a rich
-          history that ties us to the
-          very roots of the hair and beauty industry in Sri Lanka.</p>
-        <p class="describe1">The Salon Bashis family is made up of highly skilled staff members who continue this unique
-          service outlook,
-          and we’re
-          proud to say that they actively shape the direction of our salons and the brand as a whole, with care,
-          passion, and
-          personal responsibility.</p>
+        <div nz-col nzSpan="24">
+          <h1 class="section-title">ABOUT SALON BASHIS</h1>
+          <p class="describe1">A contemporary salon brand offering fresh hairstyles and beauty treatments, with a rich
+            history that ties us to the
+            very roots of the hair and beauty industry in Sri Lanka.</p>
+          <p class="describe1">The Salon Bashis family is made up of highly skilled staff members who continue this
+            unique
+            service outlook,
+            and we’re
+            proud to say that they actively shape the direction of our salons and the brand as a whole, with care,
+            passion, and
+            personal responsibility.</p>
 
+        </div>
       </div>
-    </div>
 
       <div nz-row id="contact">
         <div nz-col nzSpan="24" style="text-align: center">
