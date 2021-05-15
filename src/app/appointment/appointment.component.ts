@@ -63,7 +63,7 @@ export class AppointmentComponent implements OnInit {
       start: [null, [Validators.required]],
       end: null,
       cost: null,
-      status: ['Pending'],
+      status: null,
       services: [this.selectedServiceIDs]
     });
 
@@ -92,7 +92,9 @@ export class AppointmentComponent implements OnInit {
   resetForm(): void {
     this.appointmentForm.reset();
     this.current = 0;
-    this.generateCode();
+    this.selectedServiceIDs = [];
+    this.selectedServices = [];
+    this.getAllAppointments();
   }
 
   getAllAppointments() {
@@ -191,7 +193,7 @@ export class AppointmentComponent implements OnInit {
     this.endTime = DateTime.fromJSDate(begin).plus(duration).toLocaleString(DateTime.TIME_SIMPLE).toString();
     const startTime = DateTime.fromJSDate(begin).toLocaleString(DateTime.TIME_SIMPLE).toString();
 
-    this.appointmentForm.patchValue({end: this.endTime, start: startTime});
+    this.appointmentForm.patchValue({end: this.endTime, start: startTime, status: 'Pending'});
     this.next();
   }
 
