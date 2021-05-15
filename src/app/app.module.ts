@@ -35,6 +35,8 @@ import { StockComponent } from './stock/stock.component';
 import { GrnComponent } from './grn/grn.component';
 import { ItemComponent } from './item/item.component';
 import { ApproveAppointmentComponent } from './approve-appointment/approve-appointment.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 registerLocaleData(en);
@@ -61,7 +63,9 @@ registerLocaleData(en);
     StockComponent,
     GrnComponent,
     ItemComponent,
-    ApproveAppointmentComponent
+    ApproveAppointmentComponent,
+    InvoiceComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
