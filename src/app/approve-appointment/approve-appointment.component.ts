@@ -14,6 +14,7 @@ export class ApproveAppointmentComponent implements OnInit {
 
   pendingAppointments: Appointment[] = [];
   isVisible = false;
+  modalData = null;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
@@ -31,6 +32,7 @@ export class ApproveAppointmentComponent implements OnInit {
   }
 
   updateStatus(id: string, status: string){
+    console.log(id);
     let stat = new HttpParams();
     stat = stat.append('status', status);
     stat = stat.append('id', id);
@@ -51,11 +53,13 @@ export class ApproveAppointmentComponent implements OnInit {
     this.notification.create(type, message, content);
   }
 
-  showModal(): void {
+  showModal(data): void {
+    this.modalData = data;
     this.isVisible = true;
   }
 
   closeModal(): void {
     this.isVisible = false;
+    this.modalData = null;
   }
 }

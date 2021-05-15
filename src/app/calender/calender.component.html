@@ -17,36 +17,37 @@
         <span>{{appointment.date.slice(0,10)}}</span>
         <span>{{appointment.start}}</span>
         <span>{{appointment.end}}</span>
-        <span><button nz-button nzType="default" (click)="showModal()">View</button>
+        <span><button nz-button nzType="default" (click)="showModal(appointment)">View</button>
 
-          <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" [nzFooter]="modalFooter" (nzOnCancel)="closeModal()">
-        <ng-template #modalFooter>
-          <button nz-button nzType="default" (click)="closeModal()">Cancel</button>
-        </ng-template>
-        <label>Appointment Code : </label><span>{{appointment.code}}</span><br>
-        <label>Customer Name : </label><span>{{appointment.name}}</span><br>
-        <label>Customer NIC : </label><span>{{appointment.nic}}</span><br>
-        <label>Customer Email : </label><span>{{appointment.email}}</span><br>
-        <label>Customer Mobile : </label><span>{{appointment.mobile}}</span><br>
-        <label>Date : </label><span>{{appointment.date.slice(0,10)}}</span><br>
-        <label>Start Time : </label><span>{{appointment.start}}</span><br>
-        <label>End Time : </label><span>{{appointment.end}}</span><br><br>
-
-        <nz-list nzBordered nzHeader="Selected Services">
-          <nz-list-item *ngFor="let service of appointment.services">
-            <span>{{service.name}}</span>
-            <span>{{service.duration}}</span>
-            <span>{{service.price}}</span>
-          </nz-list-item>
-          <nz-list-item>
-            <span><h4>Total</h4></span>
-            <span><h4>{{appointment.cost}}</h4></span>
-          </nz-list-item>
-        </nz-list>
-      </nz-modal></span>
+          </span>
       </nz-list-item>
     </nz-list>
 
   </div>
 </div>
 
+<nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" [nzFooter]="modalFooter" (nzOnCancel)="closeModal()">
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="closeModal()">Cancel</button>
+  </ng-template>
+  <label>Appointment Code : </label><span>{{modalData?.code}}</span><br>
+  <label>Customer Name : </label><span>{{modalData?.name}}</span><br>
+  <label>Customer NIC : </label><span>{{modalData?.nic}}</span><br>
+  <label>Customer Email : </label><span>{{modalData?.email}}</span><br>
+  <label>Customer Mobile : </label><span>{{modalData?.mobile}}</span><br>
+  <label>Date : </label><span>{{modalData?.date.slice(0,10)}}</span><br>
+  <label>Start Time : </label><span>{{modalData?.start}}</span><br>
+  <label>End Time : </label><span>{{modalData?.end}}</span><br><br>
+
+  <nz-list nzBordered nzHeader="Selected Services">
+    <nz-list-item *ngFor="let service of modalData?.services">
+      <span>{{service.name}}</span>
+      <span>{{service.duration}}</span>
+      <span>{{service.price}}</span>
+    </nz-list-item>
+    <nz-list-item>
+      <span><h4>Total</h4></span>
+      <span><h4>{{modalData?.cost}}</h4></span>
+    </nz-list-item>
+  </nz-list>
+</nz-modal>

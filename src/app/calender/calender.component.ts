@@ -15,6 +15,7 @@ export class CalenderComponent implements OnInit {
   activeAppointments: Appointment[] = [];
   displayActiveAppointments: Appointment[] = [];
   isVisible = false;
+  modalData = null;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
@@ -38,12 +39,14 @@ export class CalenderComponent implements OnInit {
     this.displayActiveAppointments = this.activeAppointments.filter(appointment => appointment.date.toString().slice(0, 10) == date.toString().slice(0, 10));
   }
 
-  showModal(): void {
+  showModal(data): void {
+    this.modalData = data;
     this.isVisible = true;
   }
 
   closeModal(): void {
     this.isVisible = false;
+    this.modalData = null;
   }
 
   onPanelChange(change: { date: Date; mode: string }): void {
