@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "./User";
 import {UserService} from "../services/user.service";
 import {Role} from "./Role";
+import {NzNotificationService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-user',
@@ -23,6 +24,7 @@ export class UserComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
+              private notification: NzNotificationService,
               private userService: UserService) {
   }
 
@@ -58,21 +60,18 @@ export class UserComponent implements OnInit {
   }
 
   submitForm() {
-    // const selectedRoles: Role = this.userForm.get('roles').value;
-    // console.log(selectedRoles, 'eeeeeeee');
-    // const insertRoles = [];
-    //
-    // for (const r in selectedRoles) {
-    //   insertRoles.push(r.id);
-    // }
-    // console.log(insertRoles);
-    // this.userForm.controls.roles.setValue(selectedRoles.id);
     this.http.put(`http://localhost:8000/api/user`, this.userForm.value).subscribe(value => {
+      this.showNotification('success', 'User details added successfully', '');
       this.getAllUsers();
+      this.resetForm();
+    }, err => {
+      for (const e in err.error.errors) {
+        this.showNotification('error', err.error.errors[e], '');
+      }
     });
   }
 
-  resetForm(e: MouseEvent): void {
+  resetForm(): void {
     this.userForm.reset();
   }
 
@@ -95,27 +94,17 @@ export class UserComponent implements OnInit {
     this.displayUsers = this.users.filter((item: User) => item.name.indexOf(this.searchValue) !== -1);
   }
 
-  fillForm(data: User) {
-
+  fillForm(user: User) {
+    this.userForm.patchValue([{
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+    }])
   }
 
-  onCheckboxChange(e) {
-    const checkArray: FormArray = this.userForm.get('roles') as FormArray;
-    console.log(e.target, 'ttttttttttttttt');
-
-    if (e.target.selected) {
-      checkArray.push(new FormControl(e.target.value));
-    } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
-    console.log(this.userForm.value, 'vaaaaaaaaaaaa');
+  showNotification(type: string, message: string, content: string): void {
+    this.notification.create(type, message, content);
   }
 
 }

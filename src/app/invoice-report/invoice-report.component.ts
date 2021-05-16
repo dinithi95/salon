@@ -1,27 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AppointmentService} from "../services/appointment.service";
-import {Appointment} from "../appointment/Appointment";
-import {DateTime, Duration} from 'luxon';
+import {Invoice} from "../invoice/Invoice";
+import {InvoiceService} from "../services/invoice.service";
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-invoice-report',
+  templateUrl: './invoice-report.component.html',
+  styleUrls: ['./invoice-report.component.css']
 })
-export class ReportComponent implements OnInit {
+export class InvoiceReportComponent implements OnInit {
   form: FormGroup;
-  data: Appointment[] = [];
-  displayData: Appointment[] = [];
+  data: Invoice[] = [];
+  displayData: Invoice[] = [];
   today = null;
 
   constructor(private fb: FormBuilder,
-              private appointmentservice: AppointmentService) {
-  }
+              private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
     this.formControl();
-    this.geAllAppointments();
+    this.geAllInvoices();
     this.today = new Date().toISOString();
   }
 
@@ -33,8 +31,8 @@ export class ReportComponent implements OnInit {
     });
   }
 
-  geAllAppointments() {
-    this.appointmentservice.getAllAppointments().subscribe(value => {
+  geAllInvoices() {
+    this.invoiceService.getAllInvoice().subscribe(value => {
       this.data = value;
     });
   }
@@ -56,12 +54,13 @@ export class ReportComponent implements OnInit {
       const to = new Date(this.form.controls.to.value);
       const status = this.form.controls.status.value;
 
-      this.data.map(appointment => {
-        const date = new Date(appointment.date);
-        if ((from < date && date < to) && (status == '' || status == appointment.status)) {
-          this.displayData.push(appointment);
+      this.data.map(invoice => {
+        const date = new Date(invoice.date);
+        if ((from < date && date < to) && (status == '' || status == invoice.status)) {
+          this.displayData.push(invoice);
         }
       });
     }
   }
+
 }

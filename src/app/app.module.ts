@@ -39,6 +39,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UnauthorizedErrorComponent } from './error/unauthorized-error/unauthorized-error.component';
 import { HeaderComponent } from './header/header.component';
+import { InvoiceReportComponent } from './invoice-report/invoice-report.component';
 
 
 registerLocaleData(en);
@@ -69,7 +70,8 @@ registerLocaleData(en);
     InvoiceComponent,
     DashboardComponent,
     UnauthorizedErrorComponent,
-    HeaderComponent
+    HeaderComponent,
+    InvoiceReportComponent
   ],
   imports: [
     BrowserModule,

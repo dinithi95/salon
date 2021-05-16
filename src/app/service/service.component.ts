@@ -61,7 +61,7 @@ export class ServiceComponent implements OnInit {
   }
 
   getSubcategoryByCategory(category) {
-    this.subcategoryService.getSubcategoryByCategory(category).subscribe(value => {
+    this.subcategoryService.getSubcategoryByCategory(category.id).subscribe(value => {
       this.subcategories = value;
     });
   }
@@ -82,9 +82,6 @@ export class ServiceComponent implements OnInit {
       this.serviceForm.controls[key].updateValueAndValidity();
     }
 
-    const sub: Subcategory = this.serviceForm.get('subcategory_id').value;
-    // console.log("vvvaaaaaa", sub);
-    this.serviceForm.controls.subcategory_id.setValue(sub.id);
 
     this.http.post(`http://localhost:8000/api/service`, this.serviceForm.value).subscribe(
       res => {
@@ -177,8 +174,8 @@ export class ServiceComponent implements OnInit {
   }
 
 // Compare select
-  compare = (o1: any, o2: any) => o1 && o2 ? o1 === o2 : o1 === o2;
-  // compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
+//   compare = (o1: any, o2: any) => o1 && o2 ? o1 === o2 : o1 === o2;
+  compare = (o1: any, o2: any) => o1 && o2 ? o1.id === o2.id : o1 === o2;
   // compareString = (o1: any, o2: any) => o1 === o2; //string
 
   delete(id: any) {

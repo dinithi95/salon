@@ -24,6 +24,8 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {UnauthorizedErrorComponent} from "./error/unauthorized-error/unauthorized-error.component";
 import {HeaderComponent} from "./header/header.component";
 import {GrnComponent} from "./grn/grn.component";
+import {InvoiceComponent} from "./invoice/invoice.component";
+import {InvoiceReportComponent} from "./invoice-report/invoice-report.component";
 
 const routes: Routes = [
   {path: 'unauthorized', component: UnauthorizedErrorComponent},
@@ -43,8 +45,9 @@ const routes: Routes = [
       {path: 'supplier', component: SupplierComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
       {path: 'order', component: PurchaseComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
       {path: 'grn', component: GrnComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
-      {path: 'voucher', component: VouchersComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
-      {path: 'report', component: ReportComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'appointment-report', component: ReportComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'invoice-report', component: InvoiceReportComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
       {path: 'category', component: CategoryComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
       {path: 'subCategory', component: SubCategoryComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
       {path: 'service', component: ServiceComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},

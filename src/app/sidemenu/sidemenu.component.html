@@ -112,17 +112,24 @@
       </li>
 
       <li nz-menu-item nzMatchRouter>
-        <a routerLink="voucher"
+        <a routerLink="invoice"
         ><i nz-icon nzType="money-collect" nzTheme="outline"></i>
-          <span>Vouchers</span></a
+          <span>Invoice</span></a
         >
       </li>
-      <li nz-menu-item nzMatchRouter>
-        <a routerLink="report"
-        ><i nz-icon nzType="printer" nzTheme="outline"></i>
-          <span>Reports</span></a
-        >
-      </li>
+      <li nz-submenu nzTitle="Reports" nzIcon="file">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="appointment-report" >
+              <i nz-icon nzType="printer" nzTheme="outline"></i>
+              <span>Appointment Repors</span></a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="invoice-report" >
+              <i nz-icon nzType="printer" nzTheme="outline"></i>
+              <span>Invoice Report</span></a>
+          </li>
+        </ul>
     </ul>
   </nz-sider>
   <nz-layout>
@@ -135,8 +142,8 @@
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
           ></i>
         </span>
-        <span  style="float: right">
-        <button nz-button nzType="default" routerLink="/"><i nz-icon nzType="global" ></i>Web Site</button>
+        <span style="float: right">
+        <button nz-button nzType="default" routerLink="/"><i nz-icon nzType="global"></i>Web Site</button>
           <button
             nz-button
             nzType="primary"
