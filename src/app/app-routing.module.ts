@@ -30,7 +30,8 @@ const routes: Routes = [
   {path: '', component: HeaderComponent, children: [
   {path: '', component: HomeComponent},
   {path: 'appointment', component: AppointmentComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier', 'Customer']}},
-  {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier', 'Customer']}}]},
+  {path: 'customer', component: CustomerComponent}
+  ]},
   {
     path: 'admin', component: SidemenuComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}, children: [
       {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
