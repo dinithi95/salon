@@ -10,7 +10,7 @@ import {SupplierService} from "../services/supplier.service";
 import {Supplier} from "../supplier/Supplier";
 import {PurchaseService} from "../services/purchase.service";
 import {GrnService} from "../services/grn.service";
-import {Service} from "../service/Service";
+import {Grn} from "./Grn";
 
 @Component({
   selector: 'app-grn',
@@ -21,14 +21,16 @@ export class GrnComponent implements OnInit {
   grnForm: FormGroup;
   items: Item[] = [];
   suppliers: Supplier[] = [];
+  GRNs: Grn[] = [];
+  displayGRNs: Grn[] = [];
   purchaseOrders: PurchaseOrder[] = [];
-  displayPurchaseOrders: PurchaseOrder[] = [];
   totalPrice = 0;
   code = '';
   visible = false;
   searchValue = '';
   isVisible = false;
   selectedPO: PurchaseOrder;
+  selectedGRN: Grn;
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
@@ -60,7 +62,6 @@ export class GrnComponent implements OnInit {
   getAllPO() {
     this.purchaseService.getAllPO().subscribe(value => {
       this.purchaseOrders = value;
-      this.displayPurchaseOrders = value;
       this.generateCode();
     });
   }
@@ -160,7 +161,7 @@ export class GrnComponent implements OnInit {
   // Table search
   search(): void {
     this.visible = false;
-    this.displayPurchaseOrders = this.purchaseOrders.filter((item: PurchaseOrder) => item.code.indexOf(this.searchValue) !== -1);
+    this.displayGRNs = this.GRNs.filter((item: Grn) => item.code.indexOf(this.searchValue) !== -1);
   }
 
 // Table search reset(table search)

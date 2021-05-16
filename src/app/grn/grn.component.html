@@ -121,7 +121,7 @@
 </nz-card>
 
 <nz-card>
-  <nz-table #nzTable [nzData]="displayGrns" nzSize="small" nzTableLayout="fixed">
+  <nz-table #nzTable [nzData]="displayGRNs" nzSize="small" nzTableLayout="fixed">
     <thead>
       <tr>
         <th nzCustomFilter>
@@ -164,7 +164,7 @@
     <H3>Purchase Order</H3>
     <label>Code :{{selectedGRN?.code}}</label><br>
     <label>Date :{{selectedGRN?.date}}</label><br>
-    <label>Supplier :{{selectedGRN?.supplier.name}}</label><br>
+    <label>Supplier :{{selectedGRN?.po.supplier.name}}</label><br>
     <label>Total Price :{{selectedGRN?.price}}</label><br>
     <label>Status :{{selectedGRN?.status}}</label><br>
 

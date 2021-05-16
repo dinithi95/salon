@@ -23,6 +23,7 @@ import {ApproveAppointmentComponent} from "./approve-appointment/approve-appoint
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {UnauthorizedErrorComponent} from "./error/unauthorized-error/unauthorized-error.component";
 import {HeaderComponent} from "./header/header.component";
+import {GrnComponent} from "./grn/grn.component";
 
 const routes: Routes = [
   {path: 'unauthorized', component: UnauthorizedErrorComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [
       {path: 'calender', component: CalenderComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
       {path: 'supplier', component: SupplierComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
       {path: 'order', component: PurchaseComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'grn', component: GrnComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
       {path: 'voucher', component: VouchersComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
       {path: 'report', component: ReportComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
       {path: 'category', component: CategoryComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
