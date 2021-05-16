@@ -35,8 +35,7 @@ export class CustomerComponent implements OnInit {
   // Call on page loading(page eka load wena kota 1st wada karanne meka)
   ngOnInit(): void {
     this.formControl();
-    if (this.checkRoute()){
-    this.getAllCustomers();}
+    this.getAllCustomers();
   }
 
   checkRoute(): boolean {
