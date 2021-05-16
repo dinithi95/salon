@@ -24,6 +24,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         const match = this.authService.checkAllowedRoles(roles);
         if (match) {
           return true;
+        } else {
+          this.router.navigate(['unauthorized']);
         }
       }
     }

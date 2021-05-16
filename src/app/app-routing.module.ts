@@ -20,28 +20,34 @@ import {AuthGuard} from "./auth.guard";
 import {NotFoundErrorComponent} from "./error/not-found-error/not-found-error.component";
 import {HomeComponent} from "./home/home.component";
 import {ApproveAppointmentComponent} from "./approve-appointment/approve-appointment.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {UnauthorizedErrorComponent} from "./error/unauthorized-error/unauthorized-error.component";
+import {HeaderComponent} from "./header/header.component";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: 'unauthorized', component: UnauthorizedErrorComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user', component: UserComponent},
+  {path: '', component: HeaderComponent, children: [
+  {path: '', component: HomeComponent},
   {path: 'appointment', component: AppointmentComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier', 'Customer']}},
+  {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier', 'Customer']}}]},
   {
     path: 'admin', component: SidemenuComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}, children: [
-      {path: 'employee', component: EmployeeComponent},
-      {path: 'customer', component: CustomerComponent},
-      {path: 'appointment', component: AppointmentComponent},
-      {path: 'calender', component: CalenderComponent},
-      {path: 'supplier', component: SupplierComponent},
-      {path: 'order', component: PurchaseComponent},
-      {path: 'voucher', component: VouchersComponent},
-      {path: 'report', component: ReportComponent},
-      {path: 'category', component: CategoryComponent},
-      {path: 'subCategory', component: SubCategoryComponent},
-      {path: 'service', component: ServiceComponent},
-      {path: 'item', component: ItemComponent},
-      {path: 'user', component: UserComponent},
-      {path: 'approve-appointment', component: ApproveAppointmentComponent},
+      {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'appointment', component: AppointmentComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'calender', component: CalenderComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'supplier', component: SupplierComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'order', component: PurchaseComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'voucher', component: VouchersComponent, canActivate: [AuthGuard], data: {roles: ['Owner', 'Cashier']}},
+      {path: 'report', component: ReportComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'category', component: CategoryComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'subCategory', component: SubCategoryComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'service', component: ServiceComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'item', component: ItemComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'user', component: UserComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
+      {path: 'approve-appointment', component: ApproveAppointmentComponent, canActivate: [AuthGuard], data: {roles: ['Owner']}},
     ],
   },
   {path: '**', component: NotFoundErrorComponent},

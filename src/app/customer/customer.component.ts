@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Customer } from './Customer';
-import { CustomerService } from '../services/customer.service';
-import { NzNotificationService } from 'ng-zorro-antd';
-import { differenceInCalendarDays, differenceInCalendarYears } from 'date-fns';
+import {HttpClient} from '@angular/common/http';
+import {Customer} from './Customer';
+import {CustomerService} from '../services/customer.service';
+import {NzNotificationService} from 'ng-zorro-antd';
+import {differenceInCalendarDays, differenceInCalendarYears} from 'date-fns';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customer',
@@ -26,29 +27,40 @@ export class CustomerComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private customerService: CustomerService,
-    private notification: NzNotificationService
-  ) {}
+    private notification: NzNotificationService,
+    private router: Router
+  ) {
+  }
 
   // Call on page loading(page eka load wena kota 1st wada karanne meka)
   ngOnInit(): void {
     this.formControl();
     this.getAllCustomers();
   }
+
+  checkRoute(): boolean {
+    if (this.router.url == '/admin/customer') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Create Form
   formControl() {
     this.customerForm = this.fb.group({
       id: null,
       code: ['', [Validators.required]],
-      name: [ '', [Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),],],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),],],
       birth: ['', [Validators.required]],
-      nic: ['', [Validators.required, Validators.pattern('^([0-9]{9}[x|X|v|V]|[0-9]{12})$'), ],],
+      nic: ['', [Validators.required, Validators.pattern('^([0-9]{9}[x|X|v|V]|[0-9]{12})$'),],],
       address: ['', [Validators.required]],
       postal: ['', [Validators.required, Validators.pattern('[0-9]{5}')]],
-      town: [ '', [ Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'), ],],
-      district: [ '', [Validators.required,  Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),  ],  ],
-      land: [   '', [Validators.required, Validators.pattern('0[1,2,3,4,5,6,8,9][0-9]{8}')],   ],
-      mobile: ['', [ Validators.required, Validators.pattern('07[0,1,2,4,5,6,7,8][0-9]{7}'), ],   ],
-      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),   ],  ],
+      town: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),],],
+      district: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+(([. ][a-zA-Z ])?[a-zA-Z]*)*$'),],],
+      land: ['', [Validators.required, Validators.pattern('0[1,2,3,4,5,6,8,9][0-9]{8}')],],
+      mobile: ['', [Validators.required, Validators.pattern('07[0,1,2,4,5,6,7,8][0-9]{7}'),],],
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'),],],
       civilStatus: ['', [Validators.required]],
       status: ['Active', [Validators.required]],
       password: ['', [Validators.required]],
@@ -68,7 +80,7 @@ export class CustomerComponent implements OnInit {
       .post(`http://localhost:8000/api/customer`, this.customerForm.value)
       .subscribe(
         (res) => {
-          if (res){
+          if (res) {
             this.http.put(`http://localhost:8000/api/user`, {
               name: this.customerForm.controls.name.value,
               email: this.customerForm.controls.email.value,
@@ -77,7 +89,7 @@ export class CustomerComponent implements OnInit {
               roles: ['3']
             }).subscribe(value => {
               this.resetForm();
-              this.showNotification( 'success', 'Customer Details Updated Successfully', '' );
+              this.showNotification('success', 'Customer Details Updated Successfully', '');
               this.getAllCustomers();
             });
           }
@@ -94,27 +106,27 @@ export class CustomerComponent implements OnInit {
   updateCustomer() {
     let updated = false;
     for (const key in this.customerForm.controls) {
-      if(this.customerForm.controls[key].dirty){
-              updated = true;
-    }
+      if (this.customerForm.controls[key].dirty) {
+        updated = true;
+      }
     }
 
-    if(updated){
-    this.http
-      .put(`http://localhost:8000/api/customer`, this.customerForm.value)
-      .subscribe(
-        (res) => {
-          this.resetForm();
-          this.showNotification( 'success', 'Customer Details Updated Successfully', '' );
-          this.getAllCustomers();
-          this.update = false;
-        },
-        (err) => {
-          for (const e in err.error.errors) {
-            this.showNotification('error', err.error.errors[e], '');
+    if (updated) {
+      this.http
+        .put(`http://localhost:8000/api/customer`, this.customerForm.value)
+        .subscribe(
+          (res) => {
+            this.resetForm();
+            this.showNotification('success', 'Customer Details Updated Successfully', '');
+            this.getAllCustomers();
+            this.update = false;
+          },
+          (err) => {
+            for (const e in err.error.errors) {
+              this.showNotification('error', err.error.errors[e], '');
+            }
           }
-        }
-      );
+        );
     } else {
       this.showNotification('warning', 'Not updated', 'No any field updated');
     }
@@ -149,6 +161,7 @@ export class CustomerComponent implements OnInit {
       (item: Customer) => item.name.indexOf(this.searchValue) !== -1
     );
   }
+
   // Table search reset(table search)
   resetSearch(): void {
     this.searchValue = '';
@@ -190,7 +203,7 @@ export class CustomerComponent implements OnInit {
     } else {
       this.code = '1000';
     }
-    this.customerForm.patchValue({ code: this.code });
+    this.customerForm.patchValue({code: this.code});
   }
 
   // Disable invalid date range(18+,  5+ = (365*5))

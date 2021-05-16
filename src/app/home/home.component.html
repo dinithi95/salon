@@ -1,25 +1,33 @@
-<nz-layout>
+<!--<nz-layout>-->
 
-  <nz-header>
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item routerLink="/">HOME</li>
-      <li nz-menu-item (click)="scroll('services')">SERVICES</li>
-      <li nz-menu-item (click)="scroll('about')">ABOUT US</li>
-      <li nz-menu-item (click)="scroll('contact')">CONTACT US</li>
-    </ul>
-  </nz-header>
-
-  <div nz-row>
-
-    <div nz-col nzSpan="24">
-      <p class="salon">WELCOME TO SALON BASHIS</p>
-      <p class="beauty">"Beauty begins the moment you decide to be yourself "</p>
-    </div>
-  </div>
+<!--  <nz-header class="app-header">-->
+<!--    <div nz-row>-->
+<!--      <div nz-col [nzMd]="12">-->
+<!--    <span class="logo"><img src="../../assets/logo.jpg" alt="LOGO"></span>-->
+<!--    <ul nz-menu nzMode="horizontal">-->
+<!--      <li nz-menu-item routerLink="/">HOME</li>-->
+<!--      <li nz-menu-item (click)="scroll('services')">SERVICES</li>-->
+<!--      <li nz-menu-item (click)="scroll('about')">ABOUT US</li>-->
+<!--      <li nz-menu-item (click)="scroll('contact')">CONTACT US</li>-->
+<!--    </ul>-->
+<!--      </div>-->
+<!--    <div nz-col [nzMd]="12">-->
+<!--    <button nz-button nzType="default"><i nz-icon nzType="project"></i>Admin</button>-->
+<!--    <button nz-button nzType="default"><i nz-icon nzType="project"></i>Web Site</button>-->
+<!--    <button nz-button nzType="default"><i nz-icon nzType="user-add"></i>Register</button>-->
+<!--    <button nz-button nzType="default"><i nz-icon nzType="login"></i>Login</button>-->
+<!--    <button nz-button nzType="default"><i nz-icon nzType="logout"></i>Logout</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nz-header>-->
 
   <nz-content>
-
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <h1 class="salon">WELCOME TO SALON BASHIS</h1>
+        <!--      <p class="beauty">"Beauty begins the moment you decide to be yourself "</p>-->
+      </div>
+    </div>
 
     <div class="inner-content">
 
@@ -27,7 +35,7 @@
         <div nz-col nzSpan="24">
           <nz-carousel nzAutoPlay>
             <div nz-carousel-content *ngFor="let image of images">
-              <img [src]="image" class="carousel-img" />
+              <img [src]="image" class="carousel-img"/>
             </div>
           </nz-carousel>
         </div>
@@ -43,58 +51,57 @@
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate1>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate2">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate2>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate3">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate3>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate4">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate4>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate5">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate5>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate6">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate6>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate7">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate7>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
 
           <nz-card nzHoverable class="img-card" [nzCover]="coverTemplate8">
             <nz-card-meta nzTitle="Hair"></nz-card-meta>
           </nz-card>
           <ng-template #coverTemplate8>
-            <img alt="hair_cut" src="../../assets/hair_cutting.jpg" />
+            <img alt="hair_cut" src="../../assets/hair_cutting.jpg"/>
           </ng-template>
-
 
 
         </div>
@@ -130,5 +137,5 @@
 
     </div>
   </nz-content>
-  <nz-footer>CONTACT WITH SALON BASHIS</nz-footer>
-</nz-layout>
+<!--  <nz-footer>CONTACT WITH SALON BASHIS</nz-footer>-->
+<!--</nz-layout>-->

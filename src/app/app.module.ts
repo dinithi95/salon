@@ -37,6 +37,8 @@ import { ItemComponent } from './item/item.component';
 import { ApproveAppointmentComponent } from './approve-appointment/approve-appointment.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UnauthorizedErrorComponent } from './error/unauthorized-error/unauthorized-error.component';
+import { HeaderComponent } from './header/header.component';
 
 
 registerLocaleData(en);
@@ -65,7 +67,9 @@ registerLocaleData(en);
     ItemComponent,
     ApproveAppointmentComponent,
     InvoiceComponent,
-    DashboardComponent
+    DashboardComponent,
+    UnauthorizedErrorComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -55,14 +55,14 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('roles');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   checkAllowedRoles(allowedRoles) {
     let isMatch = false;
     const roles = JSON.parse(localStorage.getItem('roles'));
     allowedRoles.forEach((el) => {
-      if (roles.indexOf(el) > -1) {
+      if (roles?.indexOf(el) > -1) {
         isMatch = true;
       }
     });

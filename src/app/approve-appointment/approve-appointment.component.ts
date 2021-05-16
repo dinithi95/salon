@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {NzNotificationService} from "ng-zorro-antd";
@@ -19,7 +19,8 @@ export class ApproveAppointmentComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private http: HttpClient,
               private notification: NzNotificationService,
-              private appointmentService: AppointmentService) { }
+              private appointmentService: AppointmentService) {
+  }
 
   ngOnInit(): void {
     this.getPendingAppointments();
@@ -31,7 +32,7 @@ export class ApproveAppointmentComponent implements OnInit {
     });
   }
 
-  updateStatus(id: string, status: string){
+  updateStatus(id: string, status: string) {
     console.log(id);
     let stat = new HttpParams();
     stat = stat.append('status', status);
@@ -62,4 +63,5 @@ export class ApproveAppointmentComponent implements OnInit {
     this.isVisible = false;
     this.modalData = null;
   }
+
 }

@@ -15,7 +15,7 @@
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item nzMatchRouter>
-        <a><i nz-icon nzType="dashboard"></i> <span>Dashboard</span></a>
+        <a routerLink="dashboard"><i nz-icon nzType="dashboard"></i> <span>Dashboard</span></a>
       </li>
       <li nz-menu-item nzMatchRouter>
         <a routerLink="user"
@@ -135,15 +135,15 @@
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
           ></i>
         </span>
-        <span *ngIf="isLoggedIn()" style="float: right">
+        <span  style="float: right">
+        <button nz-button nzType="default" routerLink="/"><i nz-icon nzType="global" ></i>Web Site</button>
           <button
             nz-button
             nzType="primary"
-            nzSize="small"
-            nzShape="circle"
+            nzSize="default"
             (click)="logout()"
           >
-            <i nz-icon nzType="logout"></i>
+            <i nz-icon nzType="logout"></i>Logout
           </button>
         </span>
       </div>

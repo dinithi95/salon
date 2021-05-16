@@ -10,6 +10,7 @@ import {DateTime, Duration} from 'luxon';
 import {HttpClient} from "@angular/common/http";
 import {AppointmentService} from "../services/appointment.service";
 import {Appointment} from "./Appointment";
+import {differenceInCalendarDays} from "date-fns";
 
 // interface service {
 //   name: string;
@@ -197,5 +198,12 @@ export class AppointmentComponent implements OnInit {
     this.next();
   }
 
+  disabledHours(): number[] {
+    return [18, 19, 20, 21, 22, 23];
+  }
+
+  disabledDate = (current: Date): boolean => {
+    return differenceInCalendarDays(current, new Date()) < 0;
+  };
 
 }

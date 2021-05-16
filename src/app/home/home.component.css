@@ -7,12 +7,13 @@
   overflow: hidden;
 }
 
-logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0;
+.logo {
+  width: 50px;
   float: left;
+}
+
+.logo img{
+  width: inherit;
 }
 
 [nz-menu] {
@@ -38,44 +39,40 @@ nz-footer {
 }
 
 
-.img-card{
-  width:25%;
+.img-card {
+  width: 25%;
 }
 
-.section-title{
+.section-title {
   text-align: center;
-   padding: 10px;
+  padding: 10px;
 }
 
-.salon{
+.salon {
   text-align: center;
-   padding: 0 10 0 10 ;
-   font-style: bold;
-   font-weight: 500;
-   font-size: 5em;
-   font-family: Cambria;
-   padding: 10;
+  font-family: Cambria;
 }
 
-.beauty{
+.beauty {
   text-align: center;
-  font-family:cursive;
+  font-family: cursive;
   font-size: 50px;
 
 }
-.call{
- text-align: center;
- font-size: 45px;
-   font-style: bold;
+
+.call {
+  text-align: center;
+  font-size: 45px;
+  font-style: bold;
 }
 
-.number{
- text-align: center;
+.number {
+  text-align: center;
   font-size: 40px;
-    font-style: bold;
+  font-style: bold;
 }
 
-.img-card{
+.img-card {
   width: 20%;
   text-align: center;
   display: inline-block;
@@ -83,15 +80,30 @@ nz-footer {
 }
 
 
-.describe1{
-font-style: bold;
-font-family: Arial, Helvetica, sans-serif;
-text-align: center;
-font-size: 25px;
+.describe1 {
+  font-style: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 25px;
 }
 
 
-.carousel-img{
+.carousel-img {
   width: 100%;
   display: inline;
+}
+
+nz-header {
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+}
+
+.app-header {
+  position: fixed;
+  height: 64px;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
 }

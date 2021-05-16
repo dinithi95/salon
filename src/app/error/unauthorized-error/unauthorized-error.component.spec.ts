@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import { UnauthorizedErrorComponent } from './unauthorized-error.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('UnauthorizedErrorComponent', () => {
+  let component: UnauthorizedErrorComponent;
+  let fixture: ComponentFixture<UnauthorizedErrorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ UnauthorizedErrorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(UnauthorizedErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

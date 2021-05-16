@@ -185,7 +185,7 @@
 </nz-card>
 <br>
 
-<nz-card>
+<nz-card *ngIf="checkRoute()">
   <nz-table #nzTable [nzData]="displayCustomers" nzSize="small" nzTableLayout="fixed">
     <thead>
       <tr>

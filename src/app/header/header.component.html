@@ -1,0 +1,29 @@
+<nz-layout>
+
+  <nz-header class="app-header">
+    <div nz-row>
+      <div nz-col [nzMd]="12">
+        <span class="logo" routerLink="/"><img src="../../assets/logo.jpg" alt="LOGO"></span>
+        <ul nz-menu nzMode="horizontal">
+          <li nz-menu-item routerLink="/">HOME</li>
+          <li nz-menu-item (click)="scroll('services')">SERVICES</li>
+          <li nz-menu-item (click)="scroll('about')">ABOUT US</li>
+          <li nz-menu-item (click)="scroll('contact')">CONTACT US</li>
+        </ul>
+      </div>
+      <div nz-col [nzMd]="6">
+        <button nz-button nzType="default" *ngIf="isLoggedIn()" routerLink="appointment"><i nz-icon nzType="plus"></i>Create Appointment</button>
+        <button nz-button nzType="default" *ngIf="!isLoggedIn()"><i nz-icon nzType="user-add"></i>Register</button>
+      </div>
+      <div nz-col [nzMd]="6" style="text-align: right">
+        <button nz-button nzType="default" *ngIf="isAdmin()" routerLink="/admin/dashboard"><i nz-icon nzType="project"></i>Admin</button>
+        <button nz-button nzType="default" *ngIf="!isLoggedIn()" routerLink="/login"><i nz-icon nzType="login"></i>Login</button>
+        <button nz-button nzType="default" *ngIf="isLoggedIn()" (click)="logout()"><i nz-icon nzType="logout"></i>Logout</button>
+      </div>
+    </div>
+  </nz-header>
+
+<router-outlet></router-outlet>
+
+  <nz-footer>CONTACT WITH SALON BASHIS</nz-footer>
+</nz-layout>

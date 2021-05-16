@@ -60,14 +60,14 @@
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="date">Date</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Date!">
-            <nz-date-picker formControlName="date" id="date" placeholder="Date here"></nz-date-picker>
+            <nz-date-picker formControlName="date" id="date" placeholder="Date here" [nzDisabledDate]="disabledDate" ></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="start">Start Time</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Time!">
-            <nz-time-picker formControlName="start" id="start" nzFormat="HH:mm" ></nz-time-picker>
+            <nz-time-picker formControlName="start" id="start" nzFormat="HH:mm" [nzDisabledHours]="disabledHours" ></nz-time-picker>
           </nz-form-control>
         </nz-form-item>
 
@@ -182,7 +182,7 @@
       <button nz-button nzType="primary" (click)="calculateEndTime()" *ngIf="current === 2">
         <span>Go to Confirm</span>
       </button>
-      <button nz-button nzType="default" *ngIf="current === 3"
+      <button nz-button nzType="default" *ngIf="current > -1"
               nz-popconfirm
               nzPopconfirmTitle="Are you sure?"
               (nzOnConfirm)="resetForm()"
