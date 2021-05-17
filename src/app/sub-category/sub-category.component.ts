@@ -74,6 +74,9 @@ export class SubCategoryComponent implements OnInit {
       this.subCategoryForm.controls[key].markAsDirty();
       this.subCategoryForm.controls[key].updateValueAndValidity();
     }
+    const cat: Category = this.subCategoryForm.get('category_id').value;
+    console.log("vvvaaaaaa", cat);
+    this.subCategoryForm.controls.category_id.setValue(cat.id);
 
     this.http.put(`http://localhost:8000/api/subcategory`, this.subCategoryForm.value).subscribe(
       res => {

@@ -81,6 +81,9 @@ export class ServiceComponent implements OnInit {
       this.serviceForm.controls[key].markAsDirty();
       this.serviceForm.controls[key].updateValueAndValidity();
     }
+    const sub: Subcategory = this.serviceForm.get('subcategory_id').value;
+    console.log("vvvaaaaaa", sub);
+    this.serviceForm.controls.subcategory_id.setValue(sub.id);
 
 
     this.http.post(`http://localhost:8000/api/service`, this.serviceForm.value).subscribe(
@@ -138,7 +141,7 @@ export class ServiceComponent implements OnInit {
       category: service.subcategory.category,
       subcategory_id: service.subcategory,
       price: service.price,
-      duration: service.duration,
+      duration: service.duration.slice(0,5),
       status: service.status,
     });
     this.update = true;
